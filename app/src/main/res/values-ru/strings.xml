@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Мамин помощник</string>
+    <string name="fell_asleep">Заснул:</string>
+    <string name="woke_up">Проснулся:</string>
+    <string name="slept">Спал:</string>
+    <string name="children_account">Профиль малыша</string>
+    <string name="assistant">Помощник</string>
+
+    <string name="image_transition_name">image_transition_name</string>
+    <string name="text_transition_name">text_transition_name</string>
+</resources>

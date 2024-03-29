@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Moms Assistant</string>
+    <string name="fell_asleep">Fell asleep:</string>
+    <string name="woke_up">Woke up:</string>
+    <string name="slept">Slept</string>
+    <string name="children_account">Children account</string>
+    <string name="assistant">Assistant</string>
+
+    <string name="image_transition_name">image_transition_name</string>
+    <string name="text_transition_name">text_transition_name</string>
+</resources>

@@ -1,0 +1,27 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.MomsAssistant" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/on_primary</item>
+        <item name="colorSecondary">@color/on_secondary</item>
+        <item name="colorTertiary">@color/on_tertiary</item>
+        <item name="colorPrimaryContainer">@color/on_primary_container</item>
+        <item name="colorSecondaryContainer">@color/on_secondary_container</item>
+        <item name="colorTertiaryContainer">@color/on_tertiary_container</item>
+        <item name="android:background">@color/background_color</item>
+
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="fontFamily">@font/open_sans_condensed_bold</item>
+
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <item name="android:navigationBarColor">@color/background_color</item>
+    </style>
+
+    <style name="Theme.MomsAssistant" parent="Base.Theme.MomsAssistant" />
+
+    <style name="SpecialTextColor" parent="">
+        <item name="android:textColor">@color/text_color2</item>
+    </style>
+</resources>
