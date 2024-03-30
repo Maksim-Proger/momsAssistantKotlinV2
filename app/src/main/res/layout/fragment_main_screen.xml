@@ -1,10 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_main_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.FragmentMainScreen">
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:id="@+id/scrollViewContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:orientation="horizontal"
+                android:background="@drawable/background_for_first_layer">
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/dateView"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="1.4"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginTop="25dp"
+                    android:gravity="center"
+                    android:background="@drawable/style_for_content_tiles"
+                    style="@style/SpecialTextColor"
+                    android:textSize="30sp"/>
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/style_for_content_tiles">
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/style_for_content_tiles"/>
+                    <TextClock
+                        android:id="@+id/textClock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:format24Hour="HH:mm"
+                        android:layout_gravity="center"
+                        android:background="@color/background_content_color"
+                        style="@style/SpecialTextColor"
+                        android:textSize="40sp"/>
+                </FrameLayout>
+            </LinearLayout>
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="Тут будет время бодрствования"
+                android:textAlignment="center"
+                android:gravity="center"/>
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="Тут будет кол-во снов"
+                android:textAlignment="center"
+                android:gravity="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="700dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:textAlignment="center"
+                android:gravity="center"/>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

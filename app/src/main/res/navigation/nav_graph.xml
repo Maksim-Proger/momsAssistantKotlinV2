@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentMainScreen">
+
+<!--    <fragment-->
+<!--        android:id="@+id/fragmentAssistant"-->
+<!--        android:name="project.moms.assistant.presentation.FragmentAssistant"-->
+<!--        android:label="fragment_assistant"-->
+<!--        tools:layout="@layout/fragment_assistant" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/fragmentChildrenAccount"-->
+<!--        android:name="project.moms.assistant.presentation.FragmentChildrenAccount"-->
+<!--        android:label="fragment_children_account"-->
+<!--        tools:layout="@layout/fragment_children_account" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/fragmentDiary"-->
+<!--        android:name="project.moms.assistant.presentation.FragmentDiary"-->
+<!--        android:label="fragment_diary"-->
+<!--        tools:layout="@layout/fragment_diary" />-->
+    <fragment
+        android:id="@+id/fragmentMainScreen"
+        android:name="project.moms.assistant.presentation.FragmentMainScreen"
+        android:label="fragment_main_screen"
+        tools:layout="@layout/fragment_main_screen" >
+        <action
+            android:id="@+id/action_fragmentMainScreen_to_fragmentSleep"
+            app:destination="@id/fragmentSleep" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSleep"
+        android:name="project.moms.assistant.presentation.FragmentSleep"
+        android:label="fragment_sleep"
+        tools:layout="@layout/fragment_sleep" >
+        <action
+            android:id="@+id/action_fragmentSleep_to_fragmentMainScreen"
+            app:destination="@id/fragmentMainScreen" />
+    </fragment>
+</navigation>
