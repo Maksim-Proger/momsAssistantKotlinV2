@@ -5,21 +5,41 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/fragmentMainScreen">
 
-<!--    <fragment-->
-<!--        android:id="@+id/fragmentAssistant"-->
-<!--        android:name="project.moms.assistant.presentation.FragmentAssistant"-->
-<!--        android:label="fragment_assistant"-->
-<!--        tools:layout="@layout/fragment_assistant" />-->
-<!--    <fragment-->
-<!--        android:id="@+id/fragmentChildrenAccount"-->
-<!--        android:name="project.moms.assistant.presentation.FragmentChildrenAccount"-->
-<!--        android:label="fragment_children_account"-->
-<!--        tools:layout="@layout/fragment_children_account" />-->
-<!--    <fragment-->
-<!--        android:id="@+id/fragmentDiary"-->
-<!--        android:name="project.moms.assistant.presentation.FragmentDiary"-->
-<!--        android:label="fragment_diary"-->
-<!--        tools:layout="@layout/fragment_diary" />-->
+    <fragment
+        android:id="@+id/fragmentAssistant"
+        android:name="project.moms.assistant.presentation.FragmentAssistant"
+        android:label="fragment_assistant"
+        tools:layout="@layout/fragment_assistant" >
+        <action
+            android:id="@+id/action_fragmentAssistant_to_fragmentMainScreen"
+            app:destination="@id/fragmentMainScreen" />
+        <action
+            android:id="@+id/action_fragmentAssistant_to_fragmentSleep"
+            app:destination="@id/fragmentSleep" />
+        <action
+            android:id="@+id/action_fragmentAssistant_to_fragmentDiary"
+            app:destination="@id/fragmentDiary" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentChildrenAccount"
+        android:name="project.moms.assistant.presentation.FragmentChildrenAccount"
+        android:label="fragment_children_account"
+        tools:layout="@layout/fragment_children_account" />
+    <fragment
+        android:id="@+id/fragmentDiary"
+        android:name="project.moms.assistant.presentation.FragmentDiary"
+        android:label="fragment_diary"
+        tools:layout="@layout/fragment_diary" >
+        <action
+            android:id="@+id/action_fragmentDiary_to_fragmentMainScreen"
+            app:destination="@id/fragmentMainScreen" />
+        <action
+            android:id="@+id/action_fragmentDiary_to_fragmentSleep"
+            app:destination="@id/fragmentSleep" />
+        <action
+            android:id="@+id/action_fragmentDiary_to_fragmentAssistant"
+            app:destination="@id/fragmentAssistant" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentMainScreen"
         android:name="project.moms.assistant.presentation.FragmentMainScreen"
@@ -28,6 +48,15 @@
         <action
             android:id="@+id/action_fragmentMainScreen_to_fragmentSleep"
             app:destination="@id/fragmentSleep" />
+        <action
+            android:id="@+id/action_fragmentMainScreen_to_fragmentDiary"
+            app:destination="@id/fragmentDiary" />
+        <action
+            android:id="@+id/action_fragmentMainScreen_to_fragmentAssistant"
+            app:destination="@id/fragmentAssistant" />
+        <action
+            android:id="@+id/action_fragmentMainScreen_to_fragmentChildrenAccount"
+            app:destination="@id/fragmentChildrenAccount" />
     </fragment>
     <fragment
         android:id="@+id/fragmentSleep"
@@ -37,5 +66,11 @@
         <action
             android:id="@+id/action_fragmentSleep_to_fragmentMainScreen"
             app:destination="@id/fragmentMainScreen" />
+        <action
+            android:id="@+id/action_fragmentSleep_to_fragmentDiary"
+            app:destination="@id/fragmentDiary" />
+        <action
+            android:id="@+id/action_fragmentSleep_to_fragmentAssistant"
+            app:destination="@id/fragmentAssistant" />
     </fragment>
 </navigation>

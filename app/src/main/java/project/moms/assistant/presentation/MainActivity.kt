@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity(), OnScrollChangeListener {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setupNavigation()
         setupListener()
     }
@@ -31,16 +30,36 @@ class MainActivity : AppCompatActivity(), OnScrollChangeListener {
 
     private fun setupListener() {
         binding.sleepButton.setOnClickListener {
-            navController.navigate(R.id.action_fragmentMainScreen_to_fragmentSleep)
+            val currentDestination = navController.currentDestination?.id
+            when (currentDestination) {
+                R.id.fragmentMainScreen -> navController.navigate(R.id.action_fragmentMainScreen_to_fragmentSleep)
+                R.id.fragmentDiary -> navController.navigate(R.id.action_fragmentDiary_to_fragmentSleep)
+                R.id.fragmentAssistant -> navController.navigate(R.id.action_fragmentAssistant_to_fragmentSleep)
+            }
         }
         binding.diaryButton.setOnClickListener {
-
+            val currentDestination = navController.currentDestination?.id
+            when (currentDestination) {
+                R.id.fragmentMainScreen -> navController.navigate(R.id.action_fragmentMainScreen_to_fragmentDiary)
+                R.id.fragmentSleep -> navController.navigate(R.id.action_fragmentSleep_to_fragmentDiary)
+                R.id.fragmentAssistant -> navController.navigate(R.id.action_fragmentAssistant_to_fragmentDiary)
+            }
         }
         binding.assistantButton.setOnClickListener {
-
+            val currentDestination = navController.currentDestination?.id
+            when (currentDestination) {
+                R.id.fragmentMainScreen -> navController.navigate(R.id.action_fragmentMainScreen_to_fragmentAssistant)
+                R.id.fragmentSleep -> navController.navigate(R.id.action_fragmentSleep_to_fragmentAssistant)
+                R.id.fragmentDiary -> navController.navigate(R.id.action_fragmentDiary_to_fragmentAssistant)
+            }
         }
         binding.homeButton.setOnClickListener {
-            navController.navigate(R.id.action_fragmentSleep_to_fragmentMainScreen)
+            val currentDestination = navController.currentDestination?.id
+            when (currentDestination) {
+                R.id.fragmentSleep -> navController.navigate(R.id.action_fragmentSleep_to_fragmentMainScreen)
+                R.id.fragmentDiary -> navController.navigate(R.id.action_fragmentDiary_to_fragmentMainScreen)
+                R.id.fragmentAssistant -> navController.navigate(R.id.action_fragmentAssistant_to_fragmentMainScreen)
+            }
         }
     }
 
