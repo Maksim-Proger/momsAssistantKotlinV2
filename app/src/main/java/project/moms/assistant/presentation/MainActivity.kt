@@ -32,33 +32,45 @@ class MainActivity : AppCompatActivity(), OnScrollChangeListener {
         binding.sleepButton.setOnClickListener {
             val currentDestination = navController.currentDestination?.id
             when (currentDestination) {
-                R.id.fragmentMainScreen -> navController.navigate(R.id.action_fragmentMainScreen_to_fragmentSleep)
-                R.id.fragmentDiary -> navController.navigate(R.id.action_fragmentDiary_to_fragmentSleep)
-                R.id.fragmentAssistant -> navController.navigate(R.id.action_fragmentAssistant_to_fragmentSleep)
+                R.id.fragmentMainScreen ->
+                    navController.navigate(R.id.action_fragmentMainScreen_to_fragmentSleep)
+                R.id.fragmentDiary ->
+                    navController.navigate(R.id.action_fragmentDiary_to_fragmentSleep)
+                R.id.fragmentAssistant ->
+                    navController.navigate(R.id.action_fragmentAssistant_to_fragmentSleep)
             }
         }
         binding.diaryButton.setOnClickListener {
             val currentDestination = navController.currentDestination?.id
             when (currentDestination) {
-                R.id.fragmentMainScreen -> navController.navigate(R.id.action_fragmentMainScreen_to_fragmentDiary)
-                R.id.fragmentSleep -> navController.navigate(R.id.action_fragmentSleep_to_fragmentDiary)
-                R.id.fragmentAssistant -> navController.navigate(R.id.action_fragmentAssistant_to_fragmentDiary)
+                R.id.fragmentMainScreen ->
+                    navController.navigate(R.id.action_fragmentMainScreen_to_fragmentDiary)
+                R.id.fragmentSleep ->
+                    navController.navigate(R.id.action_fragmentSleep_to_fragmentDiary)
+                R.id.fragmentAssistant ->
+                    navController.navigate(R.id.action_fragmentAssistant_to_fragmentDiary)
             }
         }
         binding.assistantButton.setOnClickListener {
             val currentDestination = navController.currentDestination?.id
             when (currentDestination) {
-                R.id.fragmentMainScreen -> navController.navigate(R.id.action_fragmentMainScreen_to_fragmentAssistant)
-                R.id.fragmentSleep -> navController.navigate(R.id.action_fragmentSleep_to_fragmentAssistant)
-                R.id.fragmentDiary -> navController.navigate(R.id.action_fragmentDiary_to_fragmentAssistant)
+                R.id.fragmentMainScreen ->
+                    navController.navigate(R.id.action_fragmentMainScreen_to_fragmentAssistant)
+                R.id.fragmentSleep ->
+                    navController.navigate(R.id.action_fragmentSleep_to_fragmentAssistant)
+                R.id.fragmentDiary ->
+                    navController.navigate(R.id.action_fragmentDiary_to_fragmentAssistant)
             }
         }
         binding.homeButton.setOnClickListener {
             val currentDestination = navController.currentDestination?.id
             when (currentDestination) {
-                R.id.fragmentSleep -> navController.navigate(R.id.action_fragmentSleep_to_fragmentMainScreen)
-                R.id.fragmentDiary -> navController.navigate(R.id.action_fragmentDiary_to_fragmentMainScreen)
-                R.id.fragmentAssistant -> navController.navigate(R.id.action_fragmentAssistant_to_fragmentMainScreen)
+                R.id.fragmentSleep ->
+                    navController.navigate(R.id.action_fragmentSleep_to_fragmentMainScreen)
+                R.id.fragmentDiary ->
+                    navController.navigate(R.id.action_fragmentDiary_to_fragmentMainScreen)
+                R.id.fragmentAssistant ->
+                    navController.navigate(R.id.action_fragmentAssistant_to_fragmentMainScreen)
             }
         }
     }
@@ -68,6 +80,14 @@ class MainActivity : AppCompatActivity(), OnScrollChangeListener {
     }
 
     override fun onScrollChanged(percentageScrolled: Float) {
-        BottomPanelAnimator.animateBottomPanel(binding.linearLayoutButtons, percentageScrolled)
+        val childInLinearLayout = binding.linearLayoutButtons.childCount
+        val buttons = listOf(binding.homeButton, binding.sleepButton, binding.diaryButton, binding.assistantButton)
+        BottomPanelAnimator.animateBottomPanel(
+            this,
+            binding.linearLayoutButtons,
+            childInLinearLayout,
+            buttons,
+            percentageScrolled
+        )
     }
 }
