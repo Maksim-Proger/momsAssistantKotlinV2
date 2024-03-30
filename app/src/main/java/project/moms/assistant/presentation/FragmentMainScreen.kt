@@ -1,33 +1,43 @@
 package project.moms.assistant.presentation
 
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-import project.moms.assistant.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import project.moms.assistant.databinding.FragmentMainScreenBinding
 
 class FragmentMainScreen : Fragment() {
-
-    companion object {
-        fun newInstance() = FragmentMainScreen()
-    }
-
+    private var _binding : FragmentMainScreenBinding? = null
+    private val binding : FragmentMainScreenBinding
+        get() {
+            return _binding!!
+        }
     private val viewModel: MainViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentMainScreenBinding.inflate(inflater)
+        return binding.root
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.fragment_main_screen, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.scrollViewContent.viewTreeObserver.addOnScrollChangedListener {
+            if (_binding != null) { // делаем проверку, чтобы в моменты вызова onScrollChanged() _binding не был равен null
+                val maxScroll = binding.scrollViewContent.getChildAt(0).height -
+                        binding.scrollViewContent.height
+                val currentScroll = binding.scrollViewContent.scrollY
+                val percentageScrolled = currentScroll.toFloat() / maxScroll.toFloat()
+
+                // Вызов метода onScrollChanged активности
+                (activity as? OnScrollChangeListener)?.onScrollChanged(percentageScrolled)
+            }
+        }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
