@@ -2,7 +2,9 @@ package project.moms.assistant.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import project.moms.assistant.R
 import project.moms.assistant.databinding.ActivityMainBinding
@@ -29,50 +31,30 @@ class MainActivity : AppCompatActivity(), OnScrollChangeListener {
     }
 
     private fun setupListener() {
-        binding.sleepButton.setOnClickListener {
-            val currentDestination = navController.currentDestination?.id
-            when (currentDestination) {
-                R.id.fragmentMainScreen ->
-                    navController.navigate(R.id.action_fragmentMainScreen_to_fragmentSleep)
-                R.id.fragmentDiary ->
-                    navController.navigate(R.id.action_fragmentDiary_to_fragmentSleep)
-                R.id.fragmentAssistant ->
-                    navController.navigate(R.id.action_fragmentAssistant_to_fragmentSleep)
+        val clickListener = View.OnClickListener { view ->
+            when (view.id) {
+                R.id.sleep_button -> navigateWithAnimation(R.id.fragmentSleep)
+                R.id.diary_button -> navigateWithAnimation(R.id.fragmentDiary)
+                R.id.assistant_button -> navigateWithAnimation(R.id.fragmentAssistant)
+                R.id.home_button -> navigateWithAnimation(R.id.fragmentMainScreen)
             }
         }
-        binding.diaryButton.setOnClickListener {
-            val currentDestination = navController.currentDestination?.id
-            when (currentDestination) {
-                R.id.fragmentMainScreen ->
-                    navController.navigate(R.id.action_fragmentMainScreen_to_fragmentDiary)
-                R.id.fragmentSleep ->
-                    navController.navigate(R.id.action_fragmentSleep_to_fragmentDiary)
-                R.id.fragmentAssistant ->
-                    navController.navigate(R.id.action_fragmentAssistant_to_fragmentDiary)
-            }
-        }
-        binding.assistantButton.setOnClickListener {
-            val currentDestination = navController.currentDestination?.id
-            when (currentDestination) {
-                R.id.fragmentMainScreen ->
-                    navController.navigate(R.id.action_fragmentMainScreen_to_fragmentAssistant)
-                R.id.fragmentSleep ->
-                    navController.navigate(R.id.action_fragmentSleep_to_fragmentAssistant)
-                R.id.fragmentDiary ->
-                    navController.navigate(R.id.action_fragmentDiary_to_fragmentAssistant)
-            }
-        }
-        binding.homeButton.setOnClickListener {
-            val currentDestination = navController.currentDestination?.id
-            when (currentDestination) {
-                R.id.fragmentSleep ->
-                    navController.navigate(R.id.action_fragmentSleep_to_fragmentMainScreen)
-                R.id.fragmentDiary ->
-                    navController.navigate(R.id.action_fragmentDiary_to_fragmentMainScreen)
-                R.id.fragmentAssistant ->
-                    navController.navigate(R.id.action_fragmentAssistant_to_fragmentMainScreen)
-            }
-        }
+
+        // Присваиваем обработчик каждой кнопке
+        binding.sleepButton.setOnClickListener(clickListener)
+        binding.diaryButton.setOnClickListener(clickListener)
+        binding.assistantButton.setOnClickListener(clickListener)
+        binding.homeButton.setOnClickListener(clickListener)
+    }
+    private fun navigateWithAnimation(destinationId: Int) {
+        val navOptions = NavOptions.Builder()
+            .setEnterAnim(R.anim.slide_in_right) // Анимация входа нового фрагмента
+            .setExitAnim(R.anim.slide_out_left) // Анимация выхода текущего фрагмента
+            .setPopEnterAnim(R.anim.slide_in_left) // Анимация входа текущего фрагмента при возвращении
+            .setPopExitAnim(R.anim.slide_out_right) // Анимация выхода нового фрагмента при возвращении
+            .build()
+
+        navController.navigate(destinationId, null, navOptions)
     }
 
     override fun onSupportNavigateUp(): Boolean {
