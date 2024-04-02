@@ -1,4 +1,4 @@
-package project.moms.assistant.presentation
+package project.moms.assistant.presentation.viewModels
 
 import androidx.lifecycle.ViewModel
 

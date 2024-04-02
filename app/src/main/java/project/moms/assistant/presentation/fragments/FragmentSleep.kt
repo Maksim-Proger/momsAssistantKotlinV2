@@ -1,12 +1,12 @@
-package project.moms.assistant.presentation
+package project.moms.assistant.presentation.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import project.moms.assistant.R
 import project.moms.assistant.databinding.FragmentSleepBinding
+import project.moms.assistant.presentation.OnScrollChangeListener
 
 class FragmentSleep : Fragment() {
     private var _binding : FragmentSleepBinding? = null

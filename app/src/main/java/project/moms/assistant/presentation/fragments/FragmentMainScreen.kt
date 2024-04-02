@@ -1,4 +1,4 @@
-package project.moms.assistant.presentation
+package project.moms.assistant.presentation.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import project.moms.assistant.databinding.FragmentMainScreenBinding
+import project.moms.assistant.presentation.viewModels.MainViewModel
+import project.moms.assistant.presentation.OnScrollChangeListener
 
 class FragmentMainScreen : Fragment() {
     private var _binding : FragmentMainScreenBinding? = null
