@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import project.moms.assistant.R
 import project.moms.assistant.databinding.ActivityMainBinding
@@ -26,7 +27,9 @@ class MainActivity : AppCompatActivity(), OnScrollChangeListener {
     }
 
     private fun setupNavigation() {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager
+                .findFragmentById(R.id.nav_host_fragment_content_navigation) as NavHostFragment
         navController = navHostFragment.navController
     }
 
@@ -46,6 +49,7 @@ class MainActivity : AppCompatActivity(), OnScrollChangeListener {
         binding.assistantButton.setOnClickListener(clickListener)
         binding.homeButton.setOnClickListener(clickListener)
     }
+
     private fun navigateWithAnimation(destinationId: Int) {
         val navOptions = NavOptions.Builder()
             .setEnterAnim(R.anim.slide_in_right) // Анимация входа нового фрагмента
@@ -58,6 +62,7 @@ class MainActivity : AppCompatActivity(), OnScrollChangeListener {
     }
 
     override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_content_navigation)
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
