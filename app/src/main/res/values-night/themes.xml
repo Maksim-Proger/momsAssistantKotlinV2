@@ -24,4 +24,14 @@
     <style name="SpecialTextColor" parent="">
         <item name="android:textColor">@color/text_color2</item>
     </style>
+
+    <style name="CustomAppBarStyle" parent="Widget.Material3.AppBarLayout">
+        <item name="android:background">@color/on_primary</item>
+        <item name="android:textColor">@color/text_color2</item>
+    </style>
+
+    <style name="CustomTabLayoutStyle" parent="Widget.Material3.TabLayout">
+        <item name="android:background">@color/on_primary</item>
+        <item name="android:textColor">@color/text_color2</item>
+    </style>
 </resources>

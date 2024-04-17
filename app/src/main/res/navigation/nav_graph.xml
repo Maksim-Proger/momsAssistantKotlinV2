@@ -77,5 +77,14 @@
             android:id="@+id/action_fragmentSleep_to_fragmentAssistant"
             app:destination="@id/fragmentAssistant" />
     </fragment>
+    <fragment
+        android:id="@+id/fragmentSleepStatistics"
+        android:name="project.moms.assistant.presentation.fragments.FragmentSleepStatistics"
+        android:label="fragment_sleep_statistics"
+        tools:layout="@layout/fragment_sleep_statistics" />
+    <fragment
+        android:id="@+id/fragmentSectionsPager"
+        android:name="project.moms.assistant.presentation.fragments.FragmentSectionsPager"
+        android:label="FragmentSectionsPager" />
 
 </navigation>
