@@ -6,6 +6,12 @@
     <string name="children_account">Children account</string>
     <string name="assistant">Assistant</string>
 
+    <string name="start_sleep">Start a dream</string>
+    <string name="end_sleep">End the dream</string>
+
+    <string name="sleep_monitoring">Sleep monitoring</string>
+    <string name="sleep_statistic">Sleep statistics</string>
+
     <string name="image_transition_name">image_transition_name</string>
     <string name="text_transition_name">text_transition_name</string>
 </resources>

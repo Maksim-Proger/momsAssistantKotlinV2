@@ -127,7 +127,7 @@
                         android:layout_height="50dp"
                         android:layout_marginTop="0dp"
                         android:layout_marginBottom="5dp"
-                        android:text="Начать сон"
+                        android:text="@string/start_sleep"
                         android:background="@drawable/rounded_style_right"
                         style="@style/SpecialTextColor"
                         android:gravity="center_vertical"/>
@@ -137,7 +137,7 @@
                         android:layout_height="50dp"
                         android:layout_marginTop="0dp"
                         android:layout_marginBottom="5dp"
-                        android:text="Завершить сон"
+                        android:text="@string/end_sleep"
                         android:background="@drawable/rounded_style_right"
                         style="@style/SpecialTextColor"
                         android:gravity="center_vertical"/>
@@ -180,7 +180,7 @@
             </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="700dp"
+                android:layout_height="300dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
                 android:textAlignment="center"
