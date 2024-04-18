@@ -7,7 +7,6 @@
         <item name="colorPrimaryContainer">@color/on_primary_container</item>
         <item name="colorSecondaryContainer">@color/on_secondary_container</item>
         <item name="colorTertiaryContainer">@color/on_tertiary_container</item>
-        <item name="android:background">@color/background_color</item>
 
         <item name="android:textSize">25sp</item>
         <item name="android:textColor">@color/text_color</item>
@@ -27,11 +26,11 @@
 
     <style name="CustomAppBarStyle" parent="Widget.Material3.AppBarLayout">
         <item name="android:background">@color/on_primary</item>
-        <item name="android:textColor">@color/text_color2</item>
     </style>
 
     <style name="CustomTabLayoutStyle" parent="Widget.Material3.TabLayout">
         <item name="android:background">@color/on_primary</item>
-        <item name="android:textColor">@color/text_color2</item>
+        <item name="tabIndicatorColor">#dde3eb</item>
+        <item name="tabIndicatorHeight">5dp</item>
     </style>
 </resources>

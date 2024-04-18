@@ -7,7 +7,6 @@
         <item name="colorPrimaryContainer">@color/on_primary_container</item>
         <item name="colorSecondaryContainer">@color/on_secondary_container</item>
         <item name="colorTertiaryContainer">@color/on_tertiary_container</item>
-        <item name="android:background">@color/background_color</item>
 
         <item name="android:textSize">25sp</item>
         <item name="android:textColor">@color/text_color</item>
@@ -29,20 +28,9 @@
         <item name="android:background">@color/on_primary</item>
     </style>
 
-<!--    <style name="CustomTabLayoutStyle" parent="Widget.Material3.TabLayout">-->
-<!--        <item name="android:background">@color/on_primary</item>-->
-<!--        <item name="tabIndicatorColor">@color/black</item>-->
-<!--        <item name="tabIndicatorHeight">5dp</item>-->
-<!--    </style>-->
     <style name="CustomTabLayoutStyle" parent="Widget.Material3.TabLayout">
         <item name="android:background">@color/on_primary</item>
-        <item name="tabIndicatorColor">@color/black</item>
+        <item name="tabIndicatorColor">#dde3eb</item>
         <item name="tabIndicatorHeight">5dp</item>
     </style>
 </resources>
-
-<!--    android:theme="@style/CustomTabLayoutStyle"-->
-<!--    app:tabIndicatorColor="@color/black"-->
-<!--    app:tabIndicatorHeight="5dp"-->
-<!--    app:tabTextColor="@color/text_color2"-->
-<!--    app:tabSelectedTextColor="@color/on_tertiary"-->

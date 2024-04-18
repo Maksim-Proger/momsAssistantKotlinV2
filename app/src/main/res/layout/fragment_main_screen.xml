@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.fragments.FragmentMainScreen">
+
     <ScrollView
         android:id="@+id/scrollViewContent"
         android:layout_width="match_parent"
@@ -58,7 +59,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
-                android:text="Тут будет время бодрствования"
+                android:text="Здесь будет время бодрствования"
                 android:textAlignment="center"
                 android:gravity="center"/>
             <com.google.android.material.textview.MaterialTextView
@@ -66,12 +67,12 @@
                 android:layout_height="70dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
-                android:text="Тут будет кол-во снов"
+                android:text="Здесь будет кол-во снов"
                 android:textAlignment="center"
                 android:gravity="center"/>
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="700dp"
+                android:layout_height="300dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
                 android:textAlignment="center"
