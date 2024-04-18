@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content">
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="420dp"
+                    android:layout_height="360dp"
                     android:orientation="horizontal"
                     android:background="@drawable/background_for_third_layer">
                     <TextView
@@ -51,7 +51,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="280dp"
+                    android:layout_height="240dp"
                     android:layout_gravity="top"
                     android:orientation="horizontal"
                     android:background="@drawable/background_for_second_layer">
@@ -80,7 +80,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
+                    android:layout_height="120dp"
                     android:layout_gravity="top"
                     android:orientation="horizontal"
                     android:background="@drawable/background_for_first_layer">
