@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity(), OnScrollChangeListener {
     private fun setupListener() {
         val clickListener = View.OnClickListener { view ->
             when (view.id) {
-//                R.id.sleep_button -> navigateWithAnimation(R.id.fragmentSleep)
                 R.id.sleep_button -> navigateWithAnimation(R.id.fragmentSectionsPager)
                 R.id.diary_button -> navigateWithAnimation(R.id.fragmentDiary)
                 R.id.assistant_button -> navigateWithAnimation(R.id.fragmentAssistant)

@@ -14,7 +14,8 @@ class FragmentSectionsPager : Fragment() {
     private var _binding : FragmentSelectionPagerBinding? = null
     private val binding get() = _binding!!
     private val sectionsPagerAdapter by lazy {
-        SectionsPagerAdapter(requireContext(), requireActivity().supportFragmentManager)
+        // TODO переписать скрин в дипломе
+        SectionsPagerAdapter(requireContext(), childFragmentManager)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -29,4 +30,10 @@ class FragmentSectionsPager : Fragment() {
         val tabs: TabLayout = binding.tabs
         tabs.setupWithViewPager(viewPager)
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }
