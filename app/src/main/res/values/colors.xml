@@ -15,4 +15,6 @@
     <color name="text_color">#425d7d</color>
     <color name="text_color2">#FFFFF0</color>
     <color name="background_right_part">#F7EAC5</color>
+    <color name="item_statistics">#bcbcaf</color>
+    <color name="item_statistics_text_color">#431D50</color>
 </resources>

@@ -30,9 +30,21 @@ class FragmentSleep : Fragment() {
                 val percentageScrolled = currentScroll.toFloat() / maxScroll.toFloat()
 
                 // Вызов метода onScrollChanged активности
-                (activity as? OnScrollChangeListener)?.onScrollChanged(percentageScrolled)
+                (activity as? OnScrollChangeListener)?.onScrollChanged(percentageScrolled) // TODO детально разобраться эту строку
             }
         }
+    }
+
+    private fun currentTime() {
+
+    }
+
+    private fun timeDifference() {
+
+    }
+
+    private fun checkState() {
+
     }
 
     override fun onDestroyView() {
