@@ -8,9 +8,10 @@ import kotlinx.coroutines.launch
 import project.moms.assistant.data.repository.StatisticsDao
 import project.moms.assistant.data.repository.models.SleepRecording
 
-class MainViewModel(
+class DatabaseViewModel(
     private val statisticsDao: StatisticsDao
 ) : ViewModel() {
+
     val allEntries = this.statisticsDao.getAll()
         .stateIn(
             scope = viewModelScope,

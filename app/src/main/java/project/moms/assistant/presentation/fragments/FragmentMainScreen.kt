@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import project.moms.assistant.databinding.FragmentMainScreenBinding
-import project.moms.assistant.presentation.viewModels.MainViewModel
+import project.moms.assistant.presentation.viewModels.DatabaseViewModel
 import project.moms.assistant.presentation.OnScrollChangeListener
 
 class FragmentMainScreen : Fragment() {
@@ -16,7 +16,7 @@ class FragmentMainScreen : Fragment() {
         get() {
             return _binding!!
         }
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: DatabaseViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentMainScreenBinding.inflate(inflater)
