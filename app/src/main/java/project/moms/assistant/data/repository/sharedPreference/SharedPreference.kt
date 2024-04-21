@@ -14,11 +14,9 @@ class SharedPreference(private val context: Context) {
             apply()
         }
     }
-
-    fun getAsleepTime(context: Context) : String? {
+    fun getAsleepTime() : String? {
         return sharedPreferences.getString(ASLEEP, null)
     }
-
     fun removeAsleepTime() {
         with(sharedPreferences.edit()) {
             remove(ASLEEP)
@@ -32,8 +30,14 @@ class SharedPreference(private val context: Context) {
             apply()
         }
     }
-    fun getAwokeTime(context: Context) : String? {
+    fun getAwokeTime() : String? {
         return sharedPreferences.getString(AWOKE, null)
+    }
+    fun removeAwokeTime() {
+        with(sharedPreferences.edit()) {
+            remove(AWOKE)
+            apply()
+        }
     }
 
     fun saveDifferenceTime(time: String) {
@@ -42,8 +46,14 @@ class SharedPreference(private val context: Context) {
             apply()
         }
     }
-    fun getDifferenceTime(context: Context) : String? {
+    fun getDifferenceTime() : String? {
         return sharedPreferences.getString(DIFFERENCE_TIME, null)
+    }
+    fun removeDifferenceTime() {
+        with(sharedPreferences.edit()) {
+            remove(DIFFERENCE_TIME)
+            apply()
+        }
     }
 
     companion object {

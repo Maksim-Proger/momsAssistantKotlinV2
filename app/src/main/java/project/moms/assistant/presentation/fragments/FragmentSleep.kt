@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import project.moms.assistant.data.repository.sharedPreference.SharedPreference
 import project.moms.assistant.databinding.FragmentSleepBinding
 import project.moms.assistant.presentation.DatePickerDialog
 import project.moms.assistant.presentation.OnScrollChangeListener
@@ -23,6 +24,7 @@ class FragmentSleep : Fragment() {
         }
 
     private lateinit var datePickerDialog: DatePickerDialog
+    private lateinit var sharedPreference: SharedPreference
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentSleepBinding.inflate(inflater)
@@ -43,28 +45,47 @@ class FragmentSleep : Fragment() {
             }
         }
 
+        sharedPreference = SharedPreference(requireContext())
         datePickerDialog = DatePickerDialog(requireFragmentManager())
         listenerButtons()
     }
 
     private fun listenerButtons() {
+        // Заснул
         binding.fellAsleepButton.setOnClickListener {
-            binding.fellAsleepMaterialButton.text = currentTime()
+            sharedPreference.saveAsleepTime(currentTime())
+            binding.fellAsleepMaterialButton.text = sharedPreference.getAsleepTime()
+
+            // очищаем поля проснулся и разница
+            sharedPreference.removeAwokeTime()
+            sharedPreference.removeDifferenceTime()
         }
 
+        // Проснулся
         binding.wokeUpButton.setOnClickListener {
-            binding.wokeUpMaterialButton.text = currentTime()
+            sharedPreference.saveAwokeTime(currentTime())
+            binding.wokeUpMaterialButton.text = sharedPreference.getAwokeTime()
+
+            // временная реализация
+            timeDifference()
         }
 
+        // Меняем время заснул
         binding.fellAsleepMaterialButton.setOnClickListener {
             datePickerDialog.addNewTime(binding.fellAsleepMaterialButton, "time") { selectedTime ->
-                binding.fellAsleepMaterialButton.text = selectedTime
+                sharedPreference.saveAsleepTime(selectedTime)
+                binding.fellAsleepMaterialButton.text = sharedPreference.getAsleepTime()
             }
         }
 
+        // Меняем время проснулся
         binding.wokeUpMaterialButton.setOnClickListener {
             datePickerDialog.addNewTime(binding.wokeUpMaterialButton, "time") { selectedTime ->
-                binding.wokeUpMaterialButton.text = selectedTime
+                sharedPreference.saveAwokeTime(selectedTime)
+                binding.wokeUpMaterialButton.text = sharedPreference.getAwokeTime()
+
+                // временная реализация
+                timeDifference()
             }
         }
     }
@@ -82,11 +103,20 @@ class FragmentSleep : Fragment() {
         return dateFormat.format(calendar.time).toString()
     }
 
-    private fun timeDifference(time1: String, time2: String) : String {
-        val localTime1: LocalTime = LocalTime.parse(time1)
-        val localTime2: LocalTime = LocalTime.parse(time2)
-        val differenceTime = ChronoUnit.MINUTES.between(localTime1, localTime2)
-        return differenceTime.toString()
+    private fun timeDifference(){
+        val asleepTime: LocalTime = LocalTime.parse(sharedPreference.getAsleepTime())
+        val awokeTime: LocalTime = LocalTime.parse(sharedPreference.getAwokeTime())
+        if (sharedPreference.getAsleepTime() != null && sharedPreference.getAwokeTime() != null) {
+            val differenceTime = ChronoUnit.MINUTES.between(asleepTime, awokeTime)
+
+            // Переводим минуты в часы
+            val minutes = differenceTime.toInt()
+            val hours = minutes / 60
+            val remainingMinutes = minutes % 60
+            val newDifferenceTime = "${hours}ч ${remainingMinutes}мин "
+
+            binding.textViewTimeDifference.text = newDifferenceTime
+        }
     }
 
     private fun checkState() {
