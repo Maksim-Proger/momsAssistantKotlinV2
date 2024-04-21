@@ -72,7 +72,7 @@ class FragmentSleep : Fragment() {
 
         // Меняем время заснул
         binding.fellAsleepMaterialButton.setOnClickListener {
-            datePickerDialog.addNewTime(binding.fellAsleepMaterialButton, "time") { selectedTime ->
+            datePickerDialog.addNewTime(binding.fellAsleepMaterialButton) { selectedTime ->
                 sharedPreference.saveAsleepTime(selectedTime)
                 binding.fellAsleepMaterialButton.text = sharedPreference.getAsleepTime()
             }
@@ -80,7 +80,7 @@ class FragmentSleep : Fragment() {
 
         // Меняем время проснулся
         binding.wokeUpMaterialButton.setOnClickListener {
-            datePickerDialog.addNewTime(binding.wokeUpMaterialButton, "time") { selectedTime ->
+            datePickerDialog.addNewTime(binding.wokeUpMaterialButton) { selectedTime ->
                 sharedPreference.saveAwokeTime(selectedTime)
                 binding.wokeUpMaterialButton.text = sharedPreference.getAwokeTime()
 
@@ -88,6 +88,9 @@ class FragmentSleep : Fragment() {
                 timeDifference()
             }
         }
+
+        // Добавляем сон вручную
+        addNewTime()
     }
 
     private fun currentTime() : String {
@@ -119,8 +122,21 @@ class FragmentSleep : Fragment() {
         }
     }
 
-    private fun checkState() {
+    private fun addNewTime() {
+        var time1 = ""
+        var time2 = ""
+        binding.addDreamButton.setOnClickListener {
+            datePickerDialog.addNewTime(binding.addDreamButton) { selectedTime ->
+                time1 = selectedTime
+                datePickerDialog.addNewTime(binding.addDreamButton) { selectedTime2 ->
+                    time2 = selectedTime2
+                }
+            }
+        }
+    }
 
+    private fun checkState() {
+        // TODO дописать логи скрывания кнопки проснулся
     }
 
     override fun onDestroyView() {
