@@ -19,6 +19,13 @@ class SharedPreference(private val context: Context) {
         return sharedPreferences.getString(ASLEEP, null)
     }
 
+    fun removeAsleepTime() {
+        with(sharedPreferences.edit()) {
+            remove(ASLEEP)
+            apply()
+        }
+    }
+
     fun saveAwokeTime(time: String) {
         with (sharedPreferences.edit()) {
             putString(AWOKE, time)
