@@ -1,21 +1,17 @@
 package project.moms.assistant.presentation
 
-import android.widget.Button
+import android.view.View
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-import java.text.SimpleDateFormat
 import java.util.Calendar
 
 class DatePickerDialog(private val fragmentManager: FragmentManager) {
 
     private val calendar: Calendar = Calendar.getInstance()
 
-    fun addNewTime(
-        button: Button,
-        time: String,
-        onTimeSelected: (String) -> Unit) {
-        button.setOnClickListener {
+    fun addNewTime(view: View, onTimeSelected: (String) -> Unit) {
+        view.setOnClickListener {
             val picker = MaterialTimePicker.Builder()
                 .setTimeFormat(TimeFormat.CLOCK_24H)
                 .setTitleText("Укажите время")
