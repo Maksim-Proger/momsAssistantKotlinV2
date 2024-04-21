@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import project.moms.assistant.data.repository.sharedPreference.SharedPreference
 import project.moms.assistant.databinding.FragmentSleepBinding
 import project.moms.assistant.presentation.DatePickerDialog
@@ -72,7 +73,7 @@ class FragmentSleep : Fragment() {
 
         // Меняем время заснул
         binding.fellAsleepMaterialButton.setOnClickListener {
-            datePickerDialog.addNewTime(binding.fellAsleepMaterialButton) { selectedTime ->
+            datePickerDialog.changeTime(binding.fellAsleepMaterialButton) { selectedTime ->
                 sharedPreference.saveAsleepTime(selectedTime)
                 binding.fellAsleepMaterialButton.text = sharedPreference.getAsleepTime()
             }
@@ -80,7 +81,7 @@ class FragmentSleep : Fragment() {
 
         // Меняем время проснулся
         binding.wokeUpMaterialButton.setOnClickListener {
-            datePickerDialog.addNewTime(binding.wokeUpMaterialButton) { selectedTime ->
+            datePickerDialog.changeTime(binding.wokeUpMaterialButton) { selectedTime ->
                 sharedPreference.saveAwokeTime(selectedTime)
                 binding.wokeUpMaterialButton.text = sharedPreference.getAwokeTime()
 
@@ -90,7 +91,7 @@ class FragmentSleep : Fragment() {
         }
 
         // Добавляем сон вручную
-        addNewTime()
+        setupTimeSelection()
     }
 
     private fun currentTime() : String {
@@ -122,18 +123,19 @@ class FragmentSleep : Fragment() {
         }
     }
 
-    private fun addNewTime() {
-        var time1 = ""
-        var time2 = ""
-        binding.addDreamButton.setOnClickListener {
-            datePickerDialog.addNewTime(binding.addDreamButton) { selectedTime ->
-                time1 = selectedTime
-                datePickerDialog.addNewTime(binding.addDreamButton) { selectedTime2 ->
-                    time2 = selectedTime2
-                }
-            }
+
+
+    private fun setupTimeSelection() {
+        datePickerDialog.addNewTimes(binding.addDreamButton) { startTime, endTime ->
+            Toast.makeText(requireContext(),
+                "Начальное время: $startTime, Конечное время: $endTime", Toast.LENGTH_LONG
+            ).show()
         }
     }
+
+
+
+
 
     private fun checkState() {
         // TODO дописать логи скрывания кнопки проснулся
