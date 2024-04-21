@@ -24,4 +24,6 @@ class DatabaseViewModel(
             statisticsDao.addSleepRecording(SleepRecording(newEntry))
         }
     }
+
+
 }
