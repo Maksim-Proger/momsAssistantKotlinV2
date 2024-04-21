@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import project.moms.assistant.databinding.FragmentSleepBinding
+import project.moms.assistant.presentation.DatePickerDialog
 import project.moms.assistant.presentation.OnScrollChangeListener
 import java.text.SimpleDateFormat
 import java.time.LocalTime
@@ -20,6 +21,8 @@ class FragmentSleep : Fragment() {
         get() {
             return _binding!!
         }
+
+    private lateinit var datePickerDialog: DatePickerDialog
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentSleepBinding.inflate(inflater)
@@ -40,6 +43,7 @@ class FragmentSleep : Fragment() {
             }
         }
 
+        datePickerDialog = DatePickerDialog(requireFragmentManager())
         listenerButtons()
     }
 
@@ -50,6 +54,18 @@ class FragmentSleep : Fragment() {
 
         binding.wokeUpButton.setOnClickListener {
             binding.wokeUpMaterialButton.text = currentTime()
+        }
+
+        binding.fellAsleepMaterialButton.setOnClickListener {
+            datePickerDialog.addNewTime(binding.fellAsleepMaterialButton, "time") { selectedTime ->
+                binding.fellAsleepMaterialButton.text = selectedTime
+            }
+        }
+
+        binding.wokeUpMaterialButton.setOnClickListener {
+            datePickerDialog.addNewTime(binding.wokeUpMaterialButton, "time") { selectedTime ->
+                binding.wokeUpMaterialButton.text = selectedTime
+            }
         }
     }
 
