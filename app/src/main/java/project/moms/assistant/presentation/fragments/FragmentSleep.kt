@@ -47,7 +47,7 @@ class FragmentSleep : Fragment() {
         }
 
         sharedPreference = SharedPreference(requireContext())
-        datePickerDialog = DatePickerDialog(requireFragmentManager())
+        datePickerDialog = DatePickerDialog(requireFragmentManager()) // TODO попробовать избавиться от устаревшего метода
         listenerButtons()
     }
 
@@ -124,7 +124,6 @@ class FragmentSleep : Fragment() {
     }
 
 
-
     private fun setupTimeSelection() {
         datePickerDialog.addNewTimes(binding.addDreamButton) { startTime, endTime ->
             Toast.makeText(requireContext(),
@@ -132,9 +131,6 @@ class FragmentSleep : Fragment() {
             ).show()
         }
     }
-
-
-
 
 
     private fun checkState() {
