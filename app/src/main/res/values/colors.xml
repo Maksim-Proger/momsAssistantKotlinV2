@@ -18,5 +18,5 @@
     <color name="item_statistics">#bcbcaf</color>
     <color name="item_statistics_text_color">#431D50</color>
     <color name="user_message_background">#a8a89f</color>
-    <color name="assistant_message_background">#5b5b52</color>
+    <color name="assistant_message_background">#808080</color>
 </resources>

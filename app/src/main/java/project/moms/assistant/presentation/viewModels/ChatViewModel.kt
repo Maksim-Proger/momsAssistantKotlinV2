@@ -13,7 +13,6 @@ class ChatViewModel(private val repository: ChatRepository) : ViewModel() {
     fun sendMessage(messageText: String) {
         viewModelScope.launch {
             repository.addUserMessage(messageText)
-
         }
     }
 }
