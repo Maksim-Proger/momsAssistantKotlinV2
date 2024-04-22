@@ -93,6 +93,7 @@ class FragmentSleep : Fragment() {
         // Добавляем сон вручную
         setupTimeSelection()
 
+        // Привязываем bottomSheet к обработчику кнопки
         binding.settingsButton.setOnClickListener {
             val bottomSheet: SleepConfiguratorFragment =  SleepConfiguratorFragment()
             bottomSheet.show(requireFragmentManager(), bottomSheet.tag)

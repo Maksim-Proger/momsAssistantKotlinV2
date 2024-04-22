@@ -53,8 +53,16 @@ dependencies {
     //Recyclerview
     implementation("androidx.recyclerview:recyclerview:1.3.2")
 
-    // material
+    // Material
     implementation("com.google.android.material:material:1.11.0")
+
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
+
+    // Lifecycle
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
