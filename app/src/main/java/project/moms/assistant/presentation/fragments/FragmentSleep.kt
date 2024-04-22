@@ -92,6 +92,11 @@ class FragmentSleep : Fragment() {
 
         // Добавляем сон вручную
         setupTimeSelection()
+
+        binding.settingsButton.setOnClickListener {
+            val bottomSheet: SleepConfiguratorFragment =  SleepConfiguratorFragment()
+            bottomSheet.show(requireFragmentManager(), bottomSheet.tag)
+        }
     }
 
     private fun currentTime() : String {
