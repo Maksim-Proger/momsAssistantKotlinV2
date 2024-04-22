@@ -1,6 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Base.Theme.MomsAssistant" parent="Theme.Material3.DayNight.NoActionBar">
-
         <item name="colorPrimary">@color/on_primary</item>
         <item name="colorSecondary">@color/on_secondary</item>
         <item name="colorTertiary">@color/on_tertiary</item>
