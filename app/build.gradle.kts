@@ -62,7 +62,8 @@ dependencies {
     // Lifecycle
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
 
-
+    // Apache OpenNLP
+    implementation("org.apache.opennlp:opennlp-tools:1.9.3")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
