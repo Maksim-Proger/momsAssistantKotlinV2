@@ -3,7 +3,6 @@ package project.moms.assistant.presentation.fragments
 import android.os.Bundle
 import android.transition.ChangeBounds
 import android.transition.TransitionManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,6 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.textfield.TextInputLayout
@@ -31,8 +29,11 @@ class FragmentAssistant : Fragment() {
     private var _binding : FragmentAssistantBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: ChatViewModel by viewModels { ChatViewModelFactory(ChatRepository(requireContext())) }
-    private lateinit var adapter: ChatAdapter
+    private val viewModel: ChatViewModel by viewModels {
+        ChatViewModelFactory(ChatRepository(requireContext()))
+    }
+
+    private val adapter by lazy { ChatAdapter() }
 
     private lateinit var constraintLayout: ConstraintLayout
     private lateinit var constraintSetStart: ConstraintSet
@@ -46,17 +47,14 @@ class FragmentAssistant : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = ChatAdapter()
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.getChatMessagesFlow().collect { messages ->
                 adapter.submitList(messages)
-                Log.d("ChatUI", messages.toString())
             }
         }
-
 
         addListenerOnButton()
 
@@ -67,6 +65,7 @@ class FragmentAssistant : Fragment() {
         constraintSetEnd = ConstraintSet()
         constraintSetEnd.clone(requireContext(), R.layout.fragment_assistant_expanded)
         // endregion
+
         // region фукус и анимация
         binding.textInputEditText.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
