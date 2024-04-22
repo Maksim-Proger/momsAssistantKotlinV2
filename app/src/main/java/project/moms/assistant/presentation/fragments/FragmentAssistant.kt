@@ -22,6 +22,8 @@ import project.moms.assistant.databinding.FragmentAssistantBinding
 import project.moms.assistant.presentation.ChatViewModelFactory
 import project.moms.assistant.presentation.adapters.ChatAdapter
 import project.moms.assistant.presentation.viewModels.ChatViewModel
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
 
 
 // TODO доработать функционал, чтобы вместе с потерей фокуса скрывалась и клавиатура
@@ -56,8 +58,6 @@ class FragmentAssistant : Fragment() {
             }
         }
 
-        addListenerOnButton()
-
         // region Инициализируем ConstraintSets
         constraintLayout = binding.mainConstraintLayout
         constraintSetStart = ConstraintSet()
@@ -76,13 +76,15 @@ class FragmentAssistant : Fragment() {
             onEmptyAreaClicked()
         }
         // endregion
+
+        addListenerOnButton()
     }
 
     private fun addListenerOnButton() {
-        addIconForTextInputLayout()
+        addIconAndSendMessage()
     }
 
-    private fun addIconForTextInputLayout() {
+    private fun addIconAndSendMessage() {
         val searchIcon = ContextCompat.getDrawable(requireContext(), R.drawable.searched_icon)
         binding.textInputLayout.endIconMode =TextInputLayout.END_ICON_CUSTOM
         binding.textInputLayout.endIconDrawable = searchIcon
@@ -92,11 +94,10 @@ class FragmentAssistant : Fragment() {
             if (messageText.isNotEmpty()) {
                 viewModel.sendMessage(messageText)
                 binding.textInputEditText.setText("")
+                collapseEditText()
             }
         }
     }
-
-
 
     private fun expandEditText() {
         TransitionManager.beginDelayedTransition(constraintLayout, ChangeBounds().apply {
@@ -107,6 +108,7 @@ class FragmentAssistant : Fragment() {
     }
 
     private fun collapseEditText() {
+        hideKeyboard()
         TransitionManager.beginDelayedTransition(constraintLayout, ChangeBounds().apply {
             duration = 300
             interpolator = AccelerateDecelerateInterpolator()
@@ -118,6 +120,12 @@ class FragmentAssistant : Fragment() {
     private fun onEmptyAreaClicked() {
         collapseEditText()
     }
+
+    private fun hideKeyboard() {
+        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
