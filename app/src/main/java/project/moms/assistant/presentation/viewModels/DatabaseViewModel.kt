@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import project.moms.assistant.data.repository.StatisticsDao
+import project.moms.assistant.data.repository.models.DiaryRecording
 import project.moms.assistant.data.repository.models.SleepRecording
 
 class DatabaseViewModel(
@@ -28,4 +29,17 @@ class DatabaseViewModel(
     }
 
 
+    val allDiaryEntries = this.statisticsDao.getAllDiaryEntries()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000L), // TODO разобраться что это за число
+            initialValue = emptyList()
+        )
+
+    fun onSaveDiaryEntry(newEntry: String) {
+        viewModelScope.launch {
+            val diaryRecording = DiaryRecording(diaryRecording = newEntry)
+            statisticsDao.addDiaryRecording(diaryRecording)
+        }
+    }
 }
