@@ -1,22 +1,23 @@
 package project.moms.assistant.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import project.moms.assistant.R
 import project.moms.assistant.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), OnScrollChangeListener {
     private var _binding : ActivityMainBinding? = null
-    private val binding : ActivityMainBinding
-        get() {
-            return _binding!!
-        }
+    private val binding get() = _binding!!
     private lateinit var navController: NavController
+    private lateinit var drawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +32,26 @@ class MainActivity : AppCompatActivity(), OnScrollChangeListener {
             supportFragmentManager
                 .findFragmentById(R.id.nav_host_fragment_content_navigation) as NavHostFragment
         navController = navHostFragment.navController
+
+        drawerLayout = binding.drawerLayout
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.fragmentChildrenAccount,
+                R.id.fragmentSectionsPager,
+                R.id.fragmentDiary,
+                R.id.fragmentAssistant,
+                R.id.fragmentMainScreen
+            ), drawerLayout)
+
+        setSupportActionBar(binding.toolbar)
+
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(R.drawable.ic_menu)
+        }
+
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
+        NavigationUI.setupWithNavController(binding.navigationView, navController)
     }
 
     private fun setupListener() {
@@ -43,11 +64,15 @@ class MainActivity : AppCompatActivity(), OnScrollChangeListener {
             }
         }
 
-        // Присваиваем обработчик каждой кнопке
         binding.sleepButton.setOnClickListener(clickListener)
         binding.diaryButton.setOnClickListener(clickListener)
         binding.assistantButton.setOnClickListener(clickListener)
         binding.homeButton.setOnClickListener(clickListener)
+
+        binding.toolbar.setNavigationOnClickListener {
+            drawerLayout.openDrawer(binding.navigationView)
+        }
+
     }
 
     private fun navigateWithAnimation(destinationId: Int) {
