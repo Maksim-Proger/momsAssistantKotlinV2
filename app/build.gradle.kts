@@ -65,6 +65,9 @@ dependencies {
     // Apache OpenNLP
     implementation("org.apache.opennlp:opennlp-tools:1.9.3")
 
+    // Lottie
+    implementation("com.airbnb.android:lottie:4.2.1")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
