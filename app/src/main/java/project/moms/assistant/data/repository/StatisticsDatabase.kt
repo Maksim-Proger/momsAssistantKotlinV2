@@ -9,5 +9,5 @@ import project.moms.assistant.data.repository.models.SleepRecording
     version = 1
 )
 abstract class StatisticsDatabase : RoomDatabase() {
-    abstract fun StatisticsDao() : StatisticsDao
+    abstract fun statisticsDao() : StatisticsDao
 }
