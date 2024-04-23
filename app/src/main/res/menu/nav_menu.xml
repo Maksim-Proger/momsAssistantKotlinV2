@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view" >
+
+    <group >
+        <item
+            android:id="@+id/fragmentChildrenAccount"
+            android:icon="@drawable/ic_child"
+            android:title="Профиль малыша" />
+        <item
+            android:id="@+id/fragmentSectionsPager"
+            android:icon="@drawable/sleep_icon"
+            android:title="Контроль сна" />
+        <item
+            android:id="@+id/fragmentDiary"
+            android:icon="@drawable/diary_icon"
+            android:title="Дневник" />
+        <item
+            android:id="@+id/fragmentAssistant"
+            android:icon="@drawable/assistant_icon"
+            android:title="Помощник" />
+    </group>
+</menu>

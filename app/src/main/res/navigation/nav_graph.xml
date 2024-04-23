@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/fragmentAssistant"
         android:name="project.moms.assistant.presentation.fragments.FragmentAssistant"
-        android:label="fragment_assistant"
+        android:label="Помощник"
         tools:layout="@layout/fragment_assistant" >
         <action
             android:id="@+id/action_fragmentAssistant_to_fragmentMainScreen"
@@ -24,13 +24,13 @@
     <fragment
         android:id="@+id/fragmentChildrenAccount"
         android:name="project.moms.assistant.presentation.fragments.FragmentChildrenAccount"
-        android:label="fragment_children_account"
+        android:label="Профиль малыша"
         tools:layout="@layout/fragment_children_account" />
 
     <fragment
         android:id="@+id/fragmentDiary"
         android:name="project.moms.assistant.presentation.fragments.FragmentDiary"
-        android:label="fragment_diary"
+        android:label="Дневник"
         tools:layout="@layout/fragment_diary" >
         <action
             android:id="@+id/action_fragmentDiary_to_fragmentMainScreen"
@@ -46,7 +46,7 @@
     <fragment
         android:id="@+id/fragmentMainScreen"
         android:name="project.moms.assistant.presentation.fragments.FragmentMainScreen"
-        android:label="fragment_main_screen"
+        android:label="Главный экран"
         tools:layout="@layout/fragment_main_screen" >
         <action
             android:id="@+id/action_fragmentMainScreen_to_fragmentSleep"
@@ -65,7 +65,7 @@
     <fragment
         android:id="@+id/fragmentSleep"
         android:name="project.moms.assistant.presentation.fragments.FragmentSleep"
-        android:label="fragment_sleep"
+        android:label="Контроль сна"
         tools:layout="@layout/fragment_sleep" >
         <action
             android:id="@+id/action_fragmentSleep_to_fragmentMainScreen"
@@ -80,11 +80,11 @@
     <fragment
         android:id="@+id/fragmentSleepStatistics"
         android:name="project.moms.assistant.presentation.fragments.FragmentSleepStatistics"
-        android:label="fragment_sleep_statistics"
+        android:label="Контроль сна"
         tools:layout="@layout/fragment_sleep_statistics" />
     <fragment
         android:id="@+id/fragmentSectionsPager"
         android:name="project.moms.assistant.presentation.fragments.FragmentSectionsPager"
-        android:label="FragmentSectionsPager" />
+        android:label="Контроль сна" />
 
 </navigation>

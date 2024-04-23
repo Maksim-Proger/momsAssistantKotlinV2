@@ -32,4 +32,11 @@
         <item name="tabIndicatorColor">#dde3eb</item>
         <item name="tabIndicatorHeight">5dp</item>
     </style>
+
+    <style name="DrawerItemText" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@color/black</item>
+        <!-- Дополнительные настройки стиля текста, такие как fontFamily и т.д. -->
+    </style>
+
 </resources>
