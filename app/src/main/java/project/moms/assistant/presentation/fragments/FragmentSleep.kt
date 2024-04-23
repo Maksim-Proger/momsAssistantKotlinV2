@@ -6,10 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import project.moms.assistant.data.repository.App
 import project.moms.assistant.data.repository.sharedPreference.SharedPreference
 import project.moms.assistant.databinding.FragmentSleepBinding
 import project.moms.assistant.presentation.DatePickerDialog
 import project.moms.assistant.presentation.OnScrollChangeListener
+import project.moms.assistant.presentation.viewModels.DatabaseViewModel
 import java.text.SimpleDateFormat
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -26,6 +31,15 @@ class FragmentSleep : Fragment() {
 
     private lateinit var datePickerDialog: DatePickerDialog
     private lateinit var sharedPreference: SharedPreference
+
+    private val viewModel: DatabaseViewModel by viewModels {
+        object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                val statisticsDao = (requireContext().applicationContext as App).db.statisticsDao()
+                return DatabaseViewModel(statisticsDao) as T
+            }
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentSleepBinding.inflate(inflater)
@@ -69,6 +83,9 @@ class FragmentSleep : Fragment() {
 
             // временная реализация
             timeDifference()
+
+            // Записываем в базу
+            addResultTimeToDatabase(resultTime())
         }
 
         // Меняем время заснул
@@ -87,6 +104,9 @@ class FragmentSleep : Fragment() {
 
                 // временная реализация
                 timeDifference()
+
+                // Записываем в базу
+                addResultTimeToDatabase(resultTime())
             }
         }
 
@@ -113,6 +133,17 @@ class FragmentSleep : Fragment() {
         return dateFormat.format(calendar.time).toString()
     }
 
+    private fun resultTime() : String{
+        val asleepTime = sharedPreference.getAsleepTime()
+        val awokeTime = sharedPreference.getAwokeTime()
+        val differenceTime = sharedPreference.getDifferenceTime()
+        return "$asleepTime : $awokeTime : $differenceTime"
+    }
+
+    private fun addResultTimeToDatabase(resultTime: String) {
+        viewModel.onSaveEntry(resultTime)
+    }
+
     private fun timeDifference(){
         val asleepTime: LocalTime = LocalTime.parse(sharedPreference.getAsleepTime())
         val awokeTime: LocalTime = LocalTime.parse(sharedPreference.getAwokeTime())
@@ -124,7 +155,7 @@ class FragmentSleep : Fragment() {
             val hours = minutes / 60
             val remainingMinutes = minutes % 60
             val newDifferenceTime = "${hours}ч ${remainingMinutes}мин "
-
+            sharedPreference.saveDifferenceTime(newDifferenceTime)
             binding.textViewTimeDifference.text = newDifferenceTime
         }
     }

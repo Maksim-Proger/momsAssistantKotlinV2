@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="10dp"
             android:background="@color/item_statistics"
-            android:textColor="@color/item_statistics"
+            android:textColor="@color/item_statistics_text_color"
             android:textColorHint="@color/item_statistics_text_color"
             android:hint="Элемент статистики"/>
 

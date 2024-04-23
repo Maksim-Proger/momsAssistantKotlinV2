@@ -19,9 +19,11 @@ class DatabaseViewModel(
             initialValue = emptyList()
         )
 
+    // TODO переделать скрин в дипломе
     fun onSaveEntry(newEntry: String) {
         viewModelScope.launch {
-            statisticsDao.addSleepRecording(SleepRecording(newEntry))
+            val sleepRecording = SleepRecording(sleepRecordingId = newEntry)
+            statisticsDao.addSleepRecording(sleepRecording)
         }
     }
 
