@@ -17,4 +17,10 @@
     <string name="text_transition_name">text_transition_name</string>
 
     <string name="edit_assistant">Ввод:</string>
+
+    <string name="weight">Вес</string>
+    <string name="height">Рост</string>
+    <string name="date">Дата рождения</string>
+    <string name="name">Имя</string>
+    <string name="button_save">Сохранить</string>
 </resources>
