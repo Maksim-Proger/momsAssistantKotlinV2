@@ -22,20 +22,20 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_layout"
-        android:hint="Задайте свой вопрос:"
-        app:hintTextColor="@color/black"
+        android:hint="@string/edit_assistant"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        app:hintTextAppearance="@style/SpecialTextSize"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_input_edit_text"
-            android:textSize="13sp"
-            android:textColor="@color/black"
+            style="@style/StyleForContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
-
+<!--    style="@style/StyleForContent"-->
 </androidx.constraintlayout.widget.ConstraintLayout>

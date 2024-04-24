@@ -14,4 +14,6 @@
 
     <string name="image_transition_name">image_transition_name</string>
     <string name="text_transition_name">text_transition_name</string>
+
+    <string name="edit_assistant">Input:</string>
 </resources>

@@ -3,7 +3,6 @@
         <item name="colorPrimary">@color/on_primary</item>
         <item name="colorSecondary">@color/on_secondary</item>
         <item name="colorTertiary">@color/on_tertiary</item>
-        <item name="colorPrimaryContainer">@color/on_primary_container</item>
         <item name="colorSecondaryContainer">@color/on_secondary_container</item>
         <item name="colorTertiaryContainer">@color/on_tertiary_container</item>
 
@@ -23,6 +22,11 @@
         <item name="android:textColor">@color/text_color2</item>
     </style>
 
+    <style name="SpecialTextSize" parent="">
+        <item name="android:textSize">20sp</item>
+        <item name="hintTextColor">@color/black</item>
+    </style>
+
     <style name="CustomAppBarStyle" parent="Widget.Material3.AppBarLayout">
         <item name="android:background">@color/on_primary</item>
     </style>
@@ -36,7 +40,11 @@
     <style name="DrawerItemText" parent="TextAppearance.AppCompat">
         <item name="android:textSize">25sp</item>
         <item name="android:textColor">@color/black</item>
-        <!-- Дополнительные настройки стиля текста, такие как fontFamily и т.д. -->
+    </style>
+
+    <style name="StyleForContent" parent="DrawerItemText">
+        <item name="android:textSize">20sp</item>
+        <item name="android:background">#d9d6cf</item>
     </style>
 
 </resources>
