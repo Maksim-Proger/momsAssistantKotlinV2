@@ -42,4 +42,5 @@ class DatabaseViewModel(
             statisticsDao.addDiaryRecording(diaryRecording)
         }
     }
+
 }
