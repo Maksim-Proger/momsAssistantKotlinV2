@@ -50,6 +50,9 @@ dependencies {
     // CardView
     implementation("androidx.cardview:cardview:1.0.0")
 
+    // RoundImageView
+    implementation("com.makeramen:roundedimageview:2.3.0")
+
     //Recyclerview
     implementation("androidx.recyclerview:recyclerview:1.3.2")
 

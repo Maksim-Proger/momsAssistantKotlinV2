@@ -16,4 +16,10 @@
     <string name="text_transition_name">text_transition_name</string>
 
     <string name="edit_assistant">Input:</string>
+
+    <string name="weight">Weight</string>
+    <string name="height">Height</string>
+    <string name="date">Date of birth</string>
+    <string name="name">Name</string>
+    <string name="button_save">Save</string>
 </resources>
