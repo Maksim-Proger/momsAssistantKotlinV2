@@ -3,7 +3,7 @@ package project.moms.assistant.data.repository.sharedPreference
 import android.content.Context
 import android.content.SharedPreferences
 
-class SharedPreference(private val context: Context) {
+class SharedPreferences(private val context: Context) {
     private val sharedPreferences: SharedPreferences by lazy {
         context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
     }
@@ -59,7 +59,7 @@ class SharedPreference(private val context: Context) {
     companion object {
         private const val PREFERENCE_NAME = "preference_name"
         private const val ASLEEP = "asleep"
-        private const val AWOKE = "awoke"
+        const val AWOKE = "wake_up_time"
         private const val DIFFERENCE_TIME = "difference_time"
     }
 }

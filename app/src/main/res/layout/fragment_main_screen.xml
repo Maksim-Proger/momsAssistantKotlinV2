@@ -55,11 +55,12 @@
                 </FrameLayout>
             </LinearLayout>
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewTimeSinceLastSleep"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
-                android:text="Здесь будет время бодрствования"
+                android:hint="Здесь будет время бодрствования"
                 android:textAlignment="center"
                 android:gravity="center"/>
             <com.google.android.material.textview.MaterialTextView
@@ -67,7 +68,7 @@
                 android:layout_height="70dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
-                android:text="Здесь будет кол-во снов"
+                android:hint="Здесь будет кол-во снов"
                 android:textAlignment="center"
                 android:gravity="center"/>
             <TextView

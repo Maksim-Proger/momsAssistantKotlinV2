@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import project.moms.assistant.data.repository.App
-import project.moms.assistant.data.repository.sharedPreference.SharedPreference
+import project.moms.assistant.data.repository.sharedPreference.SharedPreferences
 import project.moms.assistant.databinding.FragmentSleepBinding
 import project.moms.assistant.presentation.DatePickerDialog
 import project.moms.assistant.presentation.OnScrollChangeListener
@@ -30,7 +30,7 @@ class FragmentSleep : Fragment() {
         }
 
     private lateinit var datePickerDialog: DatePickerDialog
-    private lateinit var sharedPreference: SharedPreference
+    private lateinit var sharedPreferences: SharedPreferences
 
     private val viewModel: DatabaseViewModel by viewModels {
         object : ViewModelProvider.Factory {
@@ -60,7 +60,7 @@ class FragmentSleep : Fragment() {
             }
         }
 
-        sharedPreference = SharedPreference(requireContext())
+        sharedPreferences = SharedPreferences(requireContext())
         datePickerDialog = DatePickerDialog(requireFragmentManager()) // TODO попробовать избавиться от устаревшего метода
         listenerButtons()
     }
@@ -68,18 +68,18 @@ class FragmentSleep : Fragment() {
     private fun listenerButtons() {
         // Заснул
         binding.fellAsleepButton.setOnClickListener {
-            sharedPreference.saveAsleepTime(currentTime())
-            binding.fellAsleepMaterialButton.text = sharedPreference.getAsleepTime()
+            sharedPreferences.saveAsleepTime(currentTime())
+            binding.fellAsleepMaterialButton.text = sharedPreferences.getAsleepTime()
 
             // очищаем поля проснулся и разница
-            sharedPreference.removeAwokeTime()
-            sharedPreference.removeDifferenceTime()
+            sharedPreferences.removeAwokeTime()
+            sharedPreferences.removeDifferenceTime()
         }
 
         // Проснулся
         binding.wokeUpButton.setOnClickListener {
-            sharedPreference.saveAwokeTime(currentTime())
-            binding.wokeUpMaterialButton.text = sharedPreference.getAwokeTime()
+            sharedPreferences.saveAwokeTime(currentTime())
+            binding.wokeUpMaterialButton.text = sharedPreferences.getAwokeTime()
 
             // временная реализация
             timeDifference()
@@ -91,16 +91,20 @@ class FragmentSleep : Fragment() {
         // Меняем время заснул
         binding.fellAsleepMaterialButton.setOnClickListener {
             datePickerDialog.changeTime(binding.fellAsleepMaterialButton) { selectedTime ->
-                sharedPreference.saveAsleepTime(selectedTime)
-                binding.fellAsleepMaterialButton.text = sharedPreference.getAsleepTime()
+                sharedPreferences.saveAsleepTime(selectedTime)
+                binding.fellAsleepMaterialButton.text = sharedPreferences.getAsleepTime()
             }
+
+            // очищаем поля проснулся и разница
+            sharedPreferences.removeAwokeTime()
+            sharedPreferences.removeDifferenceTime()
         }
 
         // Меняем время проснулся
         binding.wokeUpMaterialButton.setOnClickListener {
             datePickerDialog.changeTime(binding.wokeUpMaterialButton) { selectedTime ->
-                sharedPreference.saveAwokeTime(selectedTime)
-                binding.wokeUpMaterialButton.text = sharedPreference.getAwokeTime()
+                sharedPreferences.saveAwokeTime(selectedTime)
+                binding.wokeUpMaterialButton.text = sharedPreferences.getAwokeTime()
 
                 // временная реализация
                 timeDifference()
@@ -134,9 +138,9 @@ class FragmentSleep : Fragment() {
     }
 
     private fun resultTime() : String{
-        val asleepTime = sharedPreference.getAsleepTime()
-        val awokeTime = sharedPreference.getAwokeTime()
-        val differenceTime = sharedPreference.getDifferenceTime()
+        val asleepTime = sharedPreferences.getAsleepTime()
+        val awokeTime = sharedPreferences.getAwokeTime()
+        val differenceTime = sharedPreferences.getDifferenceTime()
         return "$asleepTime : $awokeTime : $differenceTime"
     }
 
@@ -144,18 +148,23 @@ class FragmentSleep : Fragment() {
         viewModel.onSaveEntry(resultTime)
     }
 
-    private fun timeDifference(){
-        val asleepTime: LocalTime = LocalTime.parse(sharedPreference.getAsleepTime())
-        val awokeTime: LocalTime = LocalTime.parse(sharedPreference.getAwokeTime())
-        if (sharedPreference.getAsleepTime() != null && sharedPreference.getAwokeTime() != null) {
-            val differenceTime = ChronoUnit.MINUTES.between(asleepTime, awokeTime)
+    private fun timeDifference() {
+        val asleepTime: LocalTime = LocalTime.parse(sharedPreferences.getAsleepTime())
+        val awokeTime: LocalTime = LocalTime.parse(sharedPreferences.getAwokeTime())
+
+        if (sharedPreferences.getAsleepTime() != null && sharedPreferences.getAwokeTime() != null) {
+            var differenceTime = ChronoUnit.MINUTES.between(asleepTime, awokeTime)
+
+            if (differenceTime < 0) {
+                differenceTime += 24 * 60
+            }
 
             // Переводим минуты в часы
             val minutes = differenceTime.toInt()
             val hours = minutes / 60
             val remainingMinutes = minutes % 60
             val newDifferenceTime = "${hours}ч ${remainingMinutes}мин "
-            sharedPreference.saveDifferenceTime(newDifferenceTime)
+            sharedPreferences.saveDifferenceTime(newDifferenceTime)
             binding.textViewTimeDifference.text = newDifferenceTime
         }
     }
@@ -163,6 +172,7 @@ class FragmentSleep : Fragment() {
 
     private fun setupTimeSelection() {
         datePickerDialog.addNewTimes(binding.addDreamButton) { startTime, endTime ->
+            // TODO добавить запись в базу
             Toast.makeText(requireContext(),
                 "Начальное время: $startTime, Конечное время: $endTime", Toast.LENGTH_LONG
             ).show()
@@ -171,7 +181,7 @@ class FragmentSleep : Fragment() {
 
 
     private fun checkState() {
-        // TODO дописать логи скрывания кнопки проснулся
+        // TODO дописать логику скрытия кнопки проснулся
     }
 
     override fun onDestroyView() {
