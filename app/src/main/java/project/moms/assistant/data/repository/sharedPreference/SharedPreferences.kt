@@ -56,10 +56,52 @@ class SharedPreferences(private val context: Context) {
         }
     }
 
+    fun saveHeight(height: String) {
+        with(sharedPreferences.edit()) {
+            putString(HEIGHT, height)
+            apply()
+        }
+    }
+    fun getHeight() : String? {
+        return sharedPreferences.getString(HEIGHT, null)
+    }
+    fun saveWeight(weight: String) {
+        with(sharedPreferences.edit()) {
+            putString(WEIGHT, weight)
+            apply()
+        }
+    }
+    fun getWeight() : String? {
+        return sharedPreferences.getString(WEIGHT, null)
+    }
+    fun saveName(name: String) {
+        with(sharedPreferences.edit()) {
+            putString(NAME, name)
+            apply()
+        }
+    }
+    fun getName() : String? {
+        return sharedPreferences.getString(NAME, null)
+    }
+
+    fun saveDate(date: String) {
+        with(sharedPreferences.edit()) {
+            putString(DATE, date)
+            apply()
+        }
+    }
+    fun getDate() : String? {
+        return sharedPreferences.getString(DATE, null)
+    }
+
     companion object {
         private const val PREFERENCE_NAME = "preference_name"
         private const val ASLEEP = "asleep"
         const val AWOKE = "wake_up_time"
         private const val DIFFERENCE_TIME = "difference_time"
+        private const val HEIGHT = "HEIGHT"
+        private const val WEIGHT = "WEIGHT"
+        private const val NAME = "NAME"
+        private const val DATE = "DATE"
     }
 }
