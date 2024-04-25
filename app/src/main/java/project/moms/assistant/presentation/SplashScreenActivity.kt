@@ -5,16 +5,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import project.moms.assistant.R
 import project.moms.assistant.databinding.ActivitySplashScreenBinding
-import android.os.Handler
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
     private var _binding : ActivitySplashScreenBinding? = null
     private val binding get() = _binding!!
 
-    private val splashTimeOut: Long = 1_000
+    private val splashTimeOut: Long = 2_000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,10 +26,11 @@ class SplashScreenActivity : AppCompatActivity() {
         val animation = AnimationUtils.loadAnimation(this, R.anim.splash_animation)
         binding.imageView.startAnimation(animation)
 
-        Handler().postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
+        lifecycleScope.launch {
+            delay(splashTimeOut)  // Используем delay для асинхронной задержки
+            val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }, splashTimeOut)
+        }
     }
 }
