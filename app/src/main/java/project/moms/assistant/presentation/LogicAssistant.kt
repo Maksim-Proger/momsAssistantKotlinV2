@@ -3,16 +3,20 @@ package project.moms.assistant.presentation
 import android.content.Context
 import opennlp.tools.stemmer.PorterStemmer
 import opennlp.tools.tokenize.SimpleTokenizer
+import project.moms.assistant.data.repository.sharedPreference.SharedPreferences
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
 
 class LogicAssistant {
-    fun assistantMethod(context: Context, question: String) : String {
-        val tokenizer: SimpleTokenizer = SimpleTokenizer.INSTANCE
-        val stemmer: PorterStemmer = PorterStemmer()
 
+    fun assistantMethod(context: Context, question: String) : String {
+        val sharedPreferences = SharedPreferences(context)
+
+        val tokenizer: SimpleTokenizer = SimpleTokenizer.INSTANCE
         val tokens: Array<String> = tokenizer.tokenize(question)
+
+        val stemmer = PorterStemmer()
         for (i in tokens.indices) {
             tokens[i] = stemmer.stem(tokens[i])
         }
@@ -37,11 +41,20 @@ class LogicAssistant {
             return readFile(context, "lactostasis.txt")
         } else if (containsAnyNormalized(tokens, "справиться с лактостазом", "у тебя лактостаз", "при лактостазе")) {
             return readFile(context, "lactostasisTreatment.txt")
+        } else if (containsAnyNormalized(tokens, "ребенок", "дети")) {
+            return CHILD
+        } else if (containsAnyNormalized(tokens, "родители", "родитель")) {
+            return PARENTS
+        } else if (containsAnyNormalized(tokens, "моего малыша", "зовут моего")) {
+            return sharedPreferences.getName().toString()
         }
+
         return "Пока я не могу ответить вам на этот вопрос. Попробуйте его переформулировать."
     }
 
-    private fun containsAnyNormalized(array: Array<String>, vararg normalizedValues: String) : Boolean {
+    private fun containsAnyNormalized(
+        array: Array<String>, vararg normalizedValues: String
+    ) : Boolean {
         val combined = array.joinToString(" ").lowercase()
         normalizedValues.forEach { normalizedValue ->
             if (combined.contains(normalizedValue.lowercase())) {
@@ -70,11 +83,19 @@ class LogicAssistant {
     }
 
     companion object {
-        private const val BASIC_ANSWER = "Я могу дать советы помогающие мамам справиться со сложностями в первые годы \" +\n" +
-                "                    \"жизни. Например, я могу дать советы по вопросу грудного вскармливания. \" +\n" +
-                "                    \"Рассказать про режимы и позы кормления или \" +\n" +
-                "                    \"рассказать про необходимость диеты для мамы. Могу дать ответы на часто \" +\n" +
-                "                    \"возникающие вопросы, например, можно ли маме выпивать алкоголь в небольшом \" +\n" +
-                "                    \"количестве, естественно. И это далеко не все мои возможности."
+        private const val BASIC_ANSWER = "Я могу дать советы помогающие мамам справиться со " +
+                "сложностями в первые годы" +
+                "жизни. Например, я могу дать советы по вопросу грудного вскармливания." +
+                "Рассказать про режимы и позы кормления или" +
+                "рассказать про необходимость диеты для мамы. Могу дать ответы на часто" +
+                "возникающие вопросы, например, можно ли маме выпивать алкоголь в небольшом" +
+                "количестве, естественно. И это далеко не все мои возможности."
+        private const val CHILD = "Человек, который не достиг совершеннолетия, установленного " +
+                "законом. А еще, это ваше меленькое чудо!)"
+        private const val PARENTS = "Родители являются ближайшими родственниками их детей. " +
+                "Роль родителей в отношении ребёнка имеет сложный и " +
+                "глубокий характер и колеблется в зависимости от культуры, религии и народа. " +
+                "Родители как воспитатели несут ответственность за поведение своего ребёнка " +
+                "в обществе. "
     }
 }

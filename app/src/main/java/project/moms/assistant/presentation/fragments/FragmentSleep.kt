@@ -182,10 +182,6 @@ class FragmentSleep : Fragment() {
         }
     }
 
-    private fun checkState() {
-        // TODO дописать логику скрытия кнопки проснулся
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
