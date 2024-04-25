@@ -23,5 +23,5 @@
     <string name="date">Дата рождения</string>
     <string name="name">Имя</string>
     <string name="button_save">Сохранить</string>
-    <string name="weeks_old">недель</string>
+    <string name="weeks_old">%s недель</string>
 </resources>

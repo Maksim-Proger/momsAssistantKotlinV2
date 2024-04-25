@@ -5,19 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import project.moms.assistant.R
 import project.moms.assistant.data.repository.sharedPreference.SharedPreferences
 import project.moms.assistant.databinding.FragmentChildrenAccountBinding
 import project.moms.assistant.presentation.viewModels.ViewModelChildrenAccount
 import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Locale
-
 
 class FragmentChildrenAccount : Fragment() {
     private var _binding : FragmentChildrenAccountBinding? = null
@@ -34,7 +31,11 @@ class FragmentChildrenAccount : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sharedPreferences = SharedPreferences(requireContext())
-        viewModel = ViewModelChildrenAccount(sharedPreferences)
+        viewModel =
+            ViewModelProvider(
+                this, ViewModelChildrenAccount
+                    .Factory(sharedPreferences)
+            )[ViewModelChildrenAccount::class.java]
 
         listenerButtons()
         getData()
@@ -42,11 +43,10 @@ class FragmentChildrenAccount : Fragment() {
 
         viewModel.ageCalculationMethod()
         lifecycleScope.launchWhenStarted {
-            viewModel.weeks.collect{it ->
-                binding.editAge.setText(it)
+            viewModel.weeks.collect{weeks ->
+                binding.editAge.setText(getString(R.string.weeks_old, weeks))
             }
         }
-
     }
 
     private fun listenerButtons() {
