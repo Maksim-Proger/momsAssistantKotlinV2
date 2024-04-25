@@ -169,16 +169,18 @@ class FragmentSleep : Fragment() {
         }
     }
 
-
     private fun setupTimeSelection() {
         datePickerDialog.addNewTimes(binding.addDreamButton) { startTime, endTime ->
-            // TODO добавить запись в базу
-            Toast.makeText(requireContext(),
-                "Начальное время: $startTime, Конечное время: $endTime", Toast.LENGTH_LONG
-            ).show()
+            sharedPreferences.saveAsleepTime(startTime)
+            sharedPreferences.saveAwokeTime(endTime)
+
+            // временная реализация
+            timeDifference()
+
+            // Записываем в базу
+            addResultTimeToDatabase(resultTime())
         }
     }
-
 
     private fun checkState() {
         // TODO дописать логику скрытия кнопки проснулся
