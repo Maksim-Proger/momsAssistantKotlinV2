@@ -93,7 +93,10 @@ class MainActivity : AppCompatActivity(), OnScrollChangeListener {
 
     override fun onScrollChanged(percentageScrolled: Float) {
         val childInLinearLayout = binding.linearLayoutButtons.childCount
-        val buttons = listOf(binding.homeButton, binding.sleepButton, binding.diaryButton, binding.assistantButton)
+        val buttons = listOf(
+            binding.homeButton, binding.sleepButton, binding.diaryButton, binding.assistantButton
+        )
+
         BottomPanelAnimator.animateBottomPanel(
             this,
             binding.linearLayoutButtons,
