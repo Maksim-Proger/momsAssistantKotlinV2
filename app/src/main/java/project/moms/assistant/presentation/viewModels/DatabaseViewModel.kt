@@ -16,11 +16,10 @@ class DatabaseViewModel(
     val allEntries = this.statisticsDao.getAll()
         .stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000L), // TODO разобраться что это за число
+            started = SharingStarted.WhileSubscribed(5000L),
             initialValue = emptyList()
         )
 
-    // TODO переделать скрин в дипломе
     fun onSaveEntry(newEntry: String, date: String) {
         viewModelScope.launch {
             val sleepRecording = SleepRecording(sleepRecordingId = newEntry, date = date)
@@ -32,7 +31,7 @@ class DatabaseViewModel(
     val allDiaryEntries = this.statisticsDao.getAllDiaryEntries()
         .stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000L), // TODO разобраться что это за число
+            started = SharingStarted.WhileSubscribed(5000L),
             initialValue = emptyList()
         )
 
