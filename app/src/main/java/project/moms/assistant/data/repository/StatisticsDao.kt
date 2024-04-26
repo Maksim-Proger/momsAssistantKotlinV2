@@ -9,7 +9,7 @@ import project.moms.assistant.data.repository.models.DiaryRecording
 
 @Dao
 interface StatisticsDao {
-    @Query("SELECT * FROM sleep_recording")
+    @Query("SELECT * FROM sleep_recording ORDER BY date DESC")
     fun getAll(): Flow<List<SleepRecording>>
 
     @Insert

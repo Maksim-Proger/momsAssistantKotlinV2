@@ -10,5 +10,7 @@ data class SleepRecording(
     @ColumnInfo(name = "id")
     val id: Long = 0,
     @ColumnInfo(name = "sleep_recording_id")
-    val sleepRecordingId: String
+    val sleepRecordingId: String,
+    @ColumnInfo(name = "date")
+    val date: String
 )
