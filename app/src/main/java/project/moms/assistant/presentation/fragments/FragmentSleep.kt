@@ -132,7 +132,7 @@ class FragmentSleep : Fragment() {
 
     private fun currentDate() : String {
         val calendar: Calendar = Calendar.getInstance()
-        val dateFormat: SimpleDateFormat = SimpleDateFormat("EEEE, dd.MM.yyyy",
+        val dateFormat = SimpleDateFormat("EEEE, dd.MM.yyyy",
             Locale.getDefault())
         return dateFormat.format(calendar.time).toString()
     }
@@ -145,7 +145,7 @@ class FragmentSleep : Fragment() {
     }
 
     private fun addResultTimeToDatabase(resultTime: String) {
-        viewModel.onSaveEntry(resultTime)
+        viewModel.onSaveEntry(resultTime, currentDate())
     }
 
     private fun timeDifference() {

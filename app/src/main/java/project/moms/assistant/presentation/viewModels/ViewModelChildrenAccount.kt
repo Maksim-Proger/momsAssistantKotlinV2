@@ -26,9 +26,11 @@ class ViewModelChildrenAccount(private val sharedPreferences: SharedPreferences)
 
     fun ageCalculationMethod() {
         viewModelScope.launch {
-            val birthDate = LocalDate.parse(sharedPreferences.getDate())
-            val currentDate = LocalDate.now()
-            _weeks.value = ChronoUnit.WEEKS.between(birthDate, currentDate).toString()
+            if (sharedPreferences.getDate() != null) {
+                val birthDate = LocalDate.parse(sharedPreferences.getDate())
+                val currentDate = LocalDate.now()
+                _weeks.value = ChronoUnit.WEEKS.between(birthDate, currentDate).toString()
+            }
         }
     }
 
