@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import project.moms.assistant.R
 import project.moms.assistant.data.repository.models.SleepRecording
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class StatisticsAdapter
     : ListAdapter<SleepRecording, StatisticsAdapter.SleepViewHolder>(DiffCallback()) {
@@ -39,9 +41,15 @@ class StatisticsAdapter
         fun bind(sleepRecording: SleepRecording, isFirstInGroup: Boolean) {
             itemStatistics.text = sleepRecording.sleepRecordingId
 
+            // Преобразуем строку с датой в объект Date
+            val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+            val date = dateFormat.parse(sleepRecording.date)
+
+            val resDate = date?.let { SimpleDateFormat("dd MMMM", Locale.getDefault()).format(it) }
+
             // Устанавливаем дату только для первой записи в группе
             if (isFirstInGroup) {
-                itemDate.text = sleepRecording.date
+                itemDate.text = resDate
                 itemDate.visibility = View.VISIBLE
                 val cardLayoutParams = cardView.layoutParams as LinearLayout.LayoutParams
                 cardLayoutParams.setMargins(0, 20, 0, 20)

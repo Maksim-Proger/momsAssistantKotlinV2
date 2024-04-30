@@ -132,7 +132,7 @@ class FragmentSleep : Fragment() {
 
     private fun currentDate() : String {
         val calendar: Calendar = Calendar.getInstance()
-        val dateFormat = SimpleDateFormat("EEEE, dd.MM.yyyy",
+        val dateFormat = SimpleDateFormat("dd.MM.yyyy",
             Locale.getDefault())
         return dateFormat.format(calendar.time).toString()
     }
