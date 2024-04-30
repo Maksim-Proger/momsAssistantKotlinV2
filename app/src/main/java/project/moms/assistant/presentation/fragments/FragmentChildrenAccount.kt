@@ -15,6 +15,7 @@ import project.moms.assistant.databinding.FragmentChildrenAccountBinding
 import project.moms.assistant.presentation.viewModels.ViewModelChildrenAccount
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Locale
 
 class FragmentChildrenAccount : Fragment() {
     private var _binding : FragmentChildrenAccountBinding? = null
@@ -75,15 +76,12 @@ class FragmentChildrenAccount : Fragment() {
             binding.editWeight.setText(sharedPreferences.getWeight())
             binding.editName.setText(sharedPreferences.getName())
             binding.editDate.setText(sharedPreferences.getDate())
-            // Тестовый вариант
-//            binding.editAge.setText(viewModel.ageCalculationMethod().toString() + " "
-//                    + resources.getString(R.string.weeks_old))
         }
     }
 
     private fun dateSelection() : String {
         val calendar : Calendar = Calendar.getInstance()
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         binding.selectDate.setOnClickListener {
             val constraints = CalendarConstraints.Builder()
                 .setOpenAt(calendar.timeInMillis)

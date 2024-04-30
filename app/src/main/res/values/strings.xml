@@ -16,6 +16,8 @@
     <string name="text_transition_name">text_transition_name</string>
 
     <string name="edit_assistant">Input:</string>
+    <string name="add_new_entry">Add a new entry</string>
+    <string name="diary_element">The diary element</string>
 
     <string name="weight">Weight</string>
     <string name="height">Height</string>

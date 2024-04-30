@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity(), OnScrollChangeListener {
             ), drawerLayout)
 
         setSupportActionBar(binding.toolbar)
-
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setHomeAsUpIndicator(R.drawable.ic_menu)
@@ -52,6 +51,16 @@ class MainActivity : AppCompatActivity(), OnScrollChangeListener {
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
         NavigationUI.setupWithNavController(binding.navigationView, navController)
+
+        binding.navigationView.setNavigationItemSelectedListener { menuItem ->
+            drawerLayout.closeDrawers() // Закрытие DrawerLayout перед выполнением навигации
+
+            // Проверка, не тот же ли это фрагмент, что и текущий
+            if (menuItem.itemId != navController.currentDestination?.id) {
+                navigateWithAnimation(menuItem.itemId)
+            }
+            true
+        }
     }
 
     private fun setupListener() {

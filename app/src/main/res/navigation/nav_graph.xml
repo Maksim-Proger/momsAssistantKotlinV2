@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_fragmentAssistant_to_fragmentDiary"
             app:destination="@id/fragmentDiary" />
+        <action
+            android:id="@+id/action_fragmentAssistant_to_fragmentChildrenAccount"
+            app:destination="@id/fragmentChildrenAccount" />
     </fragment>
 
     <fragment
@@ -41,6 +44,9 @@
         <action
             android:id="@+id/action_fragmentDiary_to_fragmentAssistant"
             app:destination="@id/fragmentAssistant" />
+        <action
+            android:id="@+id/action_fragmentDiary_to_fragmentChildrenAccount"
+            app:destination="@id/fragmentChildrenAccount" />
     </fragment>
 
     <fragment
@@ -76,6 +82,9 @@
         <action
             android:id="@+id/action_fragmentSleep_to_fragmentAssistant"
             app:destination="@id/fragmentAssistant" />
+        <action
+            android:id="@+id/action_fragmentSleep_to_fragmentChildrenAccount"
+            app:destination="@id/fragmentChildrenAccount" />
     </fragment>
     <fragment
         android:id="@+id/fragmentSleepStatistics"

@@ -17,10 +17,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="10dp"
+            android:padding="10dp"
             android:background="@color/item_statistics"
             android:textColor="@color/item_statistics_text_color"
             android:textColorHint="@color/item_statistics_text_color"
-            android:hint="Элемент дневника"/>
+            android:hint="@string/diary_element"/>
 
     </androidx.cardview.widget.CardView>
 </LinearLayout>
