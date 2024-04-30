@@ -17,6 +17,8 @@
     <string name="text_transition_name">text_transition_name</string>
 
     <string name="edit_assistant">Ввод:</string>
+    <string name="add_new_entry">Добавить новую запись</string>
+    <string name="diary_element">Элемент дневника</string>
 
     <string name="weight">Вес</string>
     <string name="height">Рост</string>
