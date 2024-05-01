@@ -7,7 +7,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import project.moms.assistant.R
 
-// TODO подписать назначение данного класса
 object BottomPanelAnimator {
     fun animateBottomPanel(
         context: Context,
