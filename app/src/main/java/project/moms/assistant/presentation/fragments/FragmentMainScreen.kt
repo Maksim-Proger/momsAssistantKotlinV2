@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import project.moms.assistant.data.repository.sharedPreference.SharedPreferences
 import project.moms.assistant.databinding.FragmentMainScreenBinding
 import project.moms.assistant.presentation.OnScrollChangeListener
-import project.moms.assistant.presentation.SleepViewModelFactory
+import project.moms.assistant.presentation.viewModels.SleepViewModelFactory
 import project.moms.assistant.presentation.viewModels.SleepViewModel
 
 class FragmentMainScreen : Fragment() {

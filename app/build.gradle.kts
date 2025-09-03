@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "project.moms.assistant"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "project.moms.assistant"
@@ -27,16 +27,16 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         viewBinding = true
     }
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 dependencies {
