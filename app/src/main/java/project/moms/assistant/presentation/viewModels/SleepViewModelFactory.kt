@@ -1,7 +1,6 @@
-package project.moms.assistant.presentation
+package project.moms.assistant.presentation.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import project.moms.assistant.presentation.viewModels.SleepViewModel
 import project.moms.assistant.data.repository.sharedPreference.SharedPreferences
 
 class SleepViewModelFactory(private val sharedPreferences: SharedPreferences) : ViewModelProvider.Factory {
