@@ -20,7 +20,8 @@ class StatisticsAdapter
         parent: ViewGroup,
         viewType: Int
     ): StatisticsAdapter.SleepViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_recycler_statistics, parent, false)
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_recycler_statistics, parent, false)
         return SleepViewHolder(itemView)
     }
 
@@ -65,11 +66,17 @@ class StatisticsAdapter
 }
 
 class DiffCallback : DiffUtil.ItemCallback<SleepRecordingEntity>() {
-    override fun areItemsTheSame(oldItem: SleepRecordingEntity, newItem: SleepRecordingEntity): Boolean {
+    override fun areItemsTheSame(
+        oldItem: SleepRecordingEntity,
+        newItem: SleepRecordingEntity
+    ): Boolean {
         return oldItem.sleepRecordingId == newItem.sleepRecordingId
     }
 
-    override fun areContentsTheSame(oldItem: SleepRecordingEntity, newItem: SleepRecordingEntity): Boolean {
+    override fun areContentsTheSame(
+        oldItem: SleepRecordingEntity,
+        newItem: SleepRecordingEntity
+    ): Boolean {
         return oldItem == newItem
     }
 

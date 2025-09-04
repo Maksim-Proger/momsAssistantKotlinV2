@@ -14,7 +14,7 @@ import project.moms.assistant.databinding.ActivitySplashScreenBinding
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
-    private var _binding : ActivitySplashScreenBinding? = null
+    private var _binding: ActivitySplashScreenBinding? = null
     private val binding get() = _binding!!
 
     private val splashTimeOut: Long = 2_000

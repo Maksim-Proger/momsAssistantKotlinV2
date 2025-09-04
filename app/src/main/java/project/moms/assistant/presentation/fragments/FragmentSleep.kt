@@ -22,8 +22,8 @@ import java.util.Calendar
 import java.util.Locale
 
 class FragmentSleep : Fragment() {
-    private var _binding : FragmentSleepBinding? = null
-    private val binding : FragmentSleepBinding
+    private var _binding: FragmentSleepBinding? = null
+    private val binding: FragmentSleepBinding
         get() {
             return _binding!!
         }
@@ -40,7 +40,11 @@ class FragmentSleep : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = FragmentSleepBinding.inflate(inflater)
         return binding.root
     }
@@ -60,7 +64,8 @@ class FragmentSleep : Fragment() {
         }
 
         sharedPreferences = SharedPreferences(requireContext())
-        datePickerDialog = DatePickerDialog(requireFragmentManager()) // TODO попробовать избавиться от устаревшего метода
+        datePickerDialog =
+            DatePickerDialog(requireFragmentManager()) // TODO попробовать избавиться от устаревшего метода
         listenerButtons()
     }
 
@@ -118,25 +123,27 @@ class FragmentSleep : Fragment() {
 
         // Привязываем bottomSheet к обработчику кнопки
         binding.settingsButton.setOnClickListener {
-            val bottomSheet: SleepConfiguratorFragment =  SleepConfiguratorFragment()
+            val bottomSheet: SleepConfiguratorFragment = SleepConfiguratorFragment()
             bottomSheet.show(requireFragmentManager(), bottomSheet.tag)
         }
     }
 
-    private fun currentTime() : String {
+    private fun currentTime(): String {
         val localTime: LocalTime = LocalTime.now()
         val timeFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm")
         return localTime.format(timeFormat)
     }
 
-    private fun currentDate() : String {
+    private fun currentDate(): String {
         val calendar: Calendar = Calendar.getInstance()
-        val dateFormat = SimpleDateFormat("dd.MM.yyyy",
-            Locale.getDefault())
+        val dateFormat = SimpleDateFormat(
+            "dd.MM.yyyy",
+            Locale.getDefault()
+        )
         return dateFormat.format(calendar.time).toString()
     }
 
-    private fun resultTime() : String{
+    private fun resultTime(): String {
         val asleepTime = sharedPreferences.getAsleepTime()
         val awokeTime = sharedPreferences.getAwokeTime()
         val differenceTime = sharedPreferences.getDifferenceTime()

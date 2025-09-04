@@ -8,7 +8,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import project.moms.assistant.databinding.SleepConfiguratorFragmentBinding
 
 class SleepConfiguratorFragment : BottomSheetDialogFragment() {
-    private var _binding : SleepConfiguratorFragmentBinding? = null
+    private var _binding: SleepConfiguratorFragmentBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater,

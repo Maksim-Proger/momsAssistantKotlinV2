@@ -11,17 +11,21 @@ import kotlinx.coroutines.launch
 import project.moms.assistant.data.repository.sharedPreference.SharedPreferences
 import project.moms.assistant.databinding.FragmentMainScreenBinding
 import project.moms.assistant.presentation.unit.OnScrollChangeListener
-import project.moms.assistant.presentation.viewModels.factory.SleepViewModelFactory
 import project.moms.assistant.presentation.viewModels.SleepViewModel
+import project.moms.assistant.presentation.viewModels.factory.SleepViewModelFactory
 
 class FragmentMainScreen : Fragment() {
-    private var _binding : FragmentMainScreenBinding? = null
+    private var _binding: FragmentMainScreenBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var viewModel: SleepViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentMainScreenBinding.inflate(inflater)
         return binding.root
     }
@@ -30,7 +34,7 @@ class FragmentMainScreen : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.scrollViewContent.viewTreeObserver.addOnScrollChangedListener {
-            _binding?.let {nonNullBinding -> // делаем проверку, чтобы в моменты вызова onScrollChanged() _binding не был равен null
+            _binding?.let { nonNullBinding -> // делаем проверку, чтобы в моменты вызова onScrollChanged() _binding не был равен null
                 val maxScroll = nonNullBinding.scrollViewContent.getChildAt(0).height -
                         nonNullBinding.scrollViewContent.height
                 val currentScroll = nonNullBinding.scrollViewContent.scrollY
@@ -42,13 +46,16 @@ class FragmentMainScreen : Fragment() {
         }
 
         sharedPreferences = SharedPreferences(requireContext())
-        viewModel = ViewModelProvider(this, SleepViewModelFactory(sharedPreferences))[SleepViewModel::class.java]
+        viewModel = ViewModelProvider(
+            this,
+            SleepViewModelFactory(sharedPreferences)
+        )[SleepViewModel::class.java]
 
         // TODO надо выбрать наиболее приемлемый вариант
-        _binding?.let {nonNullBinding ->
+        _binding?.let { nonNullBinding ->
             lifecycleScope.launch {
-                viewModel.awakeTime.collect {time ->
-                    nonNullBinding.textViewTimeSinceLastSleep.text = time.toString()
+                viewModel.awakeTime.collect { time ->
+                    nonNullBinding.textViewTimeSinceLastSleep.text = time
                 }
             }
         }

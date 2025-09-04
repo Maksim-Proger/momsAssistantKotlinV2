@@ -17,7 +17,7 @@ import project.moms.assistant.presentation.adapters.StatisticsAdapter
 import project.moms.assistant.presentation.viewModels.DatabaseViewModel
 
 class FragmentSleepStatistics : Fragment() {
-    private var _binding : FragmentSleepStatisticsBinding? = null
+    private var _binding: FragmentSleepStatisticsBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: DatabaseViewModel by viewModels {
@@ -31,7 +31,11 @@ class FragmentSleepStatistics : Fragment() {
 
     private val adapter by lazy { StatisticsAdapter() }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = FragmentSleepStatisticsBinding.inflate(inflater)
         return binding.root
     }
@@ -46,7 +50,7 @@ class FragmentSleepStatistics : Fragment() {
 
     private fun showAllEntries() {
         lifecycleScope.launch {
-            viewModel.allEntries.collect {list ->
+            viewModel.allEntries.collect { list ->
                 adapter.submitList(list)
             }
         }

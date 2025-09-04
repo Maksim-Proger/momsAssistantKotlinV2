@@ -11,14 +11,18 @@ import project.moms.assistant.databinding.FragmentSelectionPagerBinding
 import project.moms.assistant.presentation.adapters.SectionsPagerAdapter
 
 class FragmentSectionsPager : Fragment() {
-    private var _binding : FragmentSelectionPagerBinding? = null
+    private var _binding: FragmentSelectionPagerBinding? = null
     private val binding get() = _binding!!
     private val sectionsPagerAdapter by lazy {
         // TODO переписать скрин в дипломе
         SectionsPagerAdapter(requireContext(), childFragmentManager)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = FragmentSelectionPagerBinding.inflate(inflater)
         return binding.root
     }
