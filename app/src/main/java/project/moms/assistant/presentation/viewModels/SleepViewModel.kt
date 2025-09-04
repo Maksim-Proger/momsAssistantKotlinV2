@@ -27,7 +27,7 @@ class SleepViewModel(private val sharedPreferences: SharedPreferences) : ViewMod
         }
     }
 
-    private fun generateAwakeTimeFlow() : Flow<String> = flow {
+    private fun generateAwakeTimeFlow(): Flow<String> = flow {
         while (true) {
             val wakeupTimeStr = sharedPreferences.getAwokeTime()
             if (wakeupTimeStr != null) {

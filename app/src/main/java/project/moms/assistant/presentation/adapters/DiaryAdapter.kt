@@ -10,12 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 import project.moms.assistant.R
 import project.moms.assistant.data.models.DiaryRecordingEntity
 
-class DiaryAdapter : ListAdapter<DiaryRecordingEntity, DiaryAdapter.DiaryViewHolder>(DiffCallbackDiary()) {
+class DiaryAdapter :
+    ListAdapter<DiaryRecordingEntity, DiaryAdapter.DiaryViewHolder>(DiffCallbackDiary()) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): DiaryAdapter.DiaryViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_recycler_diary, parent, false)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_recycler_diary, parent, false)
         return DiaryViewHolder(itemView)
     }
 
@@ -34,11 +36,17 @@ class DiaryAdapter : ListAdapter<DiaryRecordingEntity, DiaryAdapter.DiaryViewHol
 }
 
 class DiffCallbackDiary : DiffUtil.ItemCallback<DiaryRecordingEntity>() {
-    override fun areItemsTheSame(oldItem: DiaryRecordingEntity, newItem: DiaryRecordingEntity): Boolean {
+    override fun areItemsTheSame(
+        oldItem: DiaryRecordingEntity,
+        newItem: DiaryRecordingEntity
+    ): Boolean {
         return oldItem.diaryRecording == newItem.diaryRecording
     }
 
-    override fun areContentsTheSame(oldItem: DiaryRecordingEntity, newItem: DiaryRecordingEntity): Boolean {
+    override fun areContentsTheSame(
+        oldItem: DiaryRecordingEntity,
+        newItem: DiaryRecordingEntity
+    ): Boolean {
         return oldItem == newItem
     }
 

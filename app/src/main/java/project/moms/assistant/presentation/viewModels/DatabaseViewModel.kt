@@ -5,9 +5,9 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import project.moms.assistant.data.repository.room.StatisticsDao
 import project.moms.assistant.data.models.DiaryRecordingEntity
 import project.moms.assistant.data.models.SleepRecordingEntity
+import project.moms.assistant.data.repository.room.StatisticsDao
 
 class DatabaseViewModel(
     private val statisticsDao: StatisticsDao
@@ -22,7 +22,8 @@ class DatabaseViewModel(
 
     fun onSaveEntry(newEntry: String, date: String) {
         viewModelScope.launch {
-            val sleepRecordingEntity = SleepRecordingEntity(sleepRecordingId = newEntry, date = date)
+            val sleepRecordingEntity =
+                SleepRecordingEntity(sleepRecordingId = newEntry, date = date)
             statisticsDao.addSleepRecording(sleepRecordingEntity)
         }
     }

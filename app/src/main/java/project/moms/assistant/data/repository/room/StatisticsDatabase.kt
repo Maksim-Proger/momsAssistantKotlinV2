@@ -9,9 +9,9 @@ import project.moms.assistant.data.models.SleepRecordingEntity
     entities = [
         SleepRecordingEntity::class,
         DiaryRecordingEntity::class
-               ],
+    ],
     version = 1
 )
 abstract class StatisticsDatabase : RoomDatabase() {
-    abstract fun statisticsDao() : StatisticsDao
+    abstract fun statisticsDao(): StatisticsDao
 }

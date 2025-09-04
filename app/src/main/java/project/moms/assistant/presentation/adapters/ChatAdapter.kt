@@ -19,17 +19,22 @@ class ChatAdapter : ListAdapter<ChatMessageModel, RecyclerView.ViewHolder>(Messa
                 val userMessageView = inflater.inflate(R.layout.user_message, parent, false)
                 UserMessageViewHolder(userMessageView)
             }
+
             ASSISTANT_MESSAGE -> {
-                val assistantMessageView = inflater.inflate(R.layout.assistant_message, parent, false)
+                val assistantMessageView =
+                    inflater.inflate(R.layout.assistant_message, parent, false)
                 AssistantMessageViewHolder(assistantMessageView)
             }
+
             EMPTY_LINE_MESSAGE -> {
                 val emptyLineView = inflater.inflate(R.layout.empty_line, parent, false)
                 EmptyLineViewHolder(emptyLineView)
             }
+
             else -> throw IllegalArgumentException("Unknown view type: $viewType")
         }
     }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val chatMessage = getItem(position)
 
@@ -39,6 +44,7 @@ class ChatAdapter : ListAdapter<ChatMessageModel, RecyclerView.ViewHolder>(Messa
             is EmptyLineViewHolder -> holder.bind(chatMessage)
         }
     }
+
     override fun getItemViewType(position: Int): Int {
         val message = getItem(position)
         return when {
@@ -47,18 +53,23 @@ class ChatAdapter : ListAdapter<ChatMessageModel, RecyclerView.ViewHolder>(Messa
             else -> ASSISTANT_MESSAGE
         }
     }
+
     class UserMessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val userMessageText: TextView = itemView.findViewById(R.id.userMessageText)
         fun bind(chatMessageModel: ChatMessageModel) {
             userMessageText.text = chatMessageModel.message
         }
     }
+
     class AssistantMessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val assistantMessageText: TextView = itemView.findViewById(R.id.assistantMessageText)
+        private val assistantMessageText: TextView =
+            itemView.findViewById(R.id.assistantMessageText)
+
         fun bind(chatMessageModel: ChatMessageModel) {
             assistantMessageText.text = chatMessageModel.message
         }
     }
+
     class EmptyLineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val emptyLine: TextView = itemView.findViewById(R.id.emptyLine)
         fun bind(chatMessageModel: ChatMessageModel) {
@@ -66,16 +77,19 @@ class ChatAdapter : ListAdapter<ChatMessageModel, RecyclerView.ViewHolder>(Messa
             emptyLine.setTextColor(Color.GRAY)
         }
     }
+
     companion object {
         private const val USER_MESSAGE = 1
         private const val ASSISTANT_MESSAGE = 2
         private const val EMPTY_LINE_MESSAGE = 3
     }
 }
+
 class MessageDiffCallback : DiffUtil.ItemCallback<ChatMessageModel>() {
     override fun areItemsTheSame(oldItem: ChatMessageModel, newItem: ChatMessageModel): Boolean {
         return oldItem.id == newItem.id
     }
+
     override fun areContentsTheSame(oldItem: ChatMessageModel, newItem: ChatMessageModel): Boolean {
         return oldItem == newItem
     }

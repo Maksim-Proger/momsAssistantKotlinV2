@@ -10,7 +10,7 @@ import java.io.InputStreamReader
 
 class LogicAssistant {
 
-    fun assistantMethod(context: Context, question: String) : String {
+    fun assistantMethod(context: Context, question: String): String {
         val sharedPreferences = SharedPreferences(context)
 
         val tokenizer: SimpleTokenizer = SimpleTokenizer.INSTANCE
@@ -23,23 +23,43 @@ class LogicAssistant {
 
         if (containsAnyNormalized(tokens, "привет", "здравствуй", "добрый", "день")) {
             return "Привет"
-        } else if (containsAnyNormalized(tokens, "имя","зовут","представься")) {
+        } else if (containsAnyNormalized(tokens, "имя", "зовут", "представься")) {
             return "Меня зовут MaksBot"
         } else if (containsAnyNormalized(tokens, "умеешь", "можешь")) {
             return BASIC_ANSWER
-        } else if (containsAnyNormalized(tokens, "питание","питания","питании","диета","диеты")) {
+        } else if (containsAnyNormalized(
+                tokens,
+                "питание",
+                "питания",
+                "питании",
+                "диета",
+                "диеты"
+            )
+        ) {
             return readFile(context, "powerSupply.txt")
-        } else if (containsAnyNormalized(tokens, "алкоголь","алкоголя","спиртное", "спиртных")) {
+        } else if (containsAnyNormalized(tokens, "алкоголь", "алкоголя", "спиртное", "спиртных")) {
             return readFile(context, "alcohol.txt")
-        } else if (containsAnyNormalized(tokens, "молоко","молоком","количество","увеличить")) {
+        } else if (containsAnyNormalized(tokens, "молоко", "молоком", "количество", "увеличить")) {
             return readFile(context, "milkProblem.txt")
-        } else if (containsAnyNormalized(tokens, "позы", "кормление","кормить")) {
+        } else if (containsAnyNormalized(tokens, "позы", "кормление", "кормить")) {
             return readFile(context, "feedingPoses.txt")
-        } else if (containsAnyNormalized(tokens, "режим","режимы")) {
+        } else if (containsAnyNormalized(tokens, "режим", "режимы")) {
             return readFile(context, "feedingMode.txt")
-        } else if (containsAnyNormalized(tokens, "что такое лактостаз", "про лактостаз", "о лактостазе")) {
+        } else if (containsAnyNormalized(
+                tokens,
+                "что такое лактостаз",
+                "про лактостаз",
+                "о лактостазе"
+            )
+        ) {
             return readFile(context, "lactostasis.txt")
-        } else if (containsAnyNormalized(tokens, "справиться с лактостазом", "у тебя лактостаз", "при лактостазе")) {
+        } else if (containsAnyNormalized(
+                tokens,
+                "справиться с лактостазом",
+                "у тебя лактостаз",
+                "при лактостазе"
+            )
+        ) {
             return readFile(context, "lactostasisTreatment.txt")
         } else if (containsAnyNormalized(tokens, "ребенок", "дети")) {
             return CHILD
@@ -52,7 +72,10 @@ class LogicAssistant {
         return "Пока я не могу ответить вам на этот вопрос. Попробуйте его переформулировать."
     }
 
-    private fun containsAnyNormalized(array: Array<String>, vararg normalizedValues: String) : Boolean {
+    private fun containsAnyNormalized(
+        array: Array<String>,
+        vararg normalizedValues: String
+    ): Boolean {
         val combined = array.joinToString(" ").lowercase()
         normalizedValues.forEach { normalizedValue ->
             if (combined.contains(normalizedValue.lowercase())) {

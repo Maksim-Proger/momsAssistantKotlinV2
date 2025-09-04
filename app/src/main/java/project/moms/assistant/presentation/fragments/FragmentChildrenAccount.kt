@@ -18,13 +18,17 @@ import java.util.Calendar
 import java.util.Locale
 
 class FragmentChildrenAccount : Fragment() {
-    private var _binding : FragmentChildrenAccountBinding? = null
+    private var _binding: FragmentChildrenAccountBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var viewModel: ChildrenAccountViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = FragmentChildrenAccountBinding.inflate(inflater)
         return binding.root
     }
@@ -44,7 +48,7 @@ class FragmentChildrenAccount : Fragment() {
 
         viewModel.ageCalculationMethod()
         lifecycleScope.launchWhenStarted {
-            viewModel.weeks.collect{weeks ->
+            viewModel.weeks.collect { weeks ->
                 binding.editAge.setText(getString(R.string.weeks_old, weeks))
             }
         }
@@ -70,7 +74,8 @@ class FragmentChildrenAccount : Fragment() {
             sharedPreferences.getHeight() != null &&
             sharedPreferences.getWeight() != null &&
             sharedPreferences.getName() != null &&
-            sharedPreferences.getDate() != null) {
+            sharedPreferences.getDate() != null
+        ) {
 
             binding.editHeight.setText(sharedPreferences.getHeight())
             binding.editWeight.setText(sharedPreferences.getWeight())
@@ -79,8 +84,8 @@ class FragmentChildrenAccount : Fragment() {
         }
     }
 
-    private fun dateSelection() : String {
-        val calendar : Calendar = Calendar.getInstance()
+    private fun dateSelection(): String {
+        val calendar: Calendar = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         binding.selectDate.setOnClickListener {
             val constraints = CalendarConstraints.Builder()

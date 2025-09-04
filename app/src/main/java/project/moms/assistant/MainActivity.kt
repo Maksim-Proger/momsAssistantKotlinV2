@@ -15,7 +15,7 @@ import project.moms.assistant.presentation.unit.BottomPanelAnimator
 import project.moms.assistant.presentation.unit.OnScrollChangeListener
 
 class MainActivity : AppCompatActivity(), OnScrollChangeListener {
-    private var _binding : ActivityMainBinding? = null
+    private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
     private lateinit var navController: NavController
     private lateinit var drawerLayout: DrawerLayout
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), OnScrollChangeListener {
 
     private fun setupNavigation() {
         val navHostFragment = supportFragmentManager
-                .findFragmentById(R.id.nav_host_fragment_content_navigation) as NavHostFragment
+            .findFragmentById(R.id.nav_host_fragment_content_navigation) as NavHostFragment
         navController = navHostFragment.navController
 
         drawerLayout = binding.drawerLayout

@@ -9,14 +9,16 @@ class SharedPreferences(private val context: Context) {
     }
 
     fun saveAsleepTime(time: String) {
-        with (sharedPreferences.edit()) {
+        with(sharedPreferences.edit()) {
             putString(ASLEEP, time)
             apply()
         }
     }
-    fun getAsleepTime() : String? {
+
+    fun getAsleepTime(): String? {
         return sharedPreferences.getString(ASLEEP, null)
     }
+
     fun removeAsleepTime() {
         with(sharedPreferences.edit()) {
             remove(ASLEEP)
@@ -25,14 +27,16 @@ class SharedPreferences(private val context: Context) {
     }
 
     fun saveAwokeTime(time: String) {
-        with (sharedPreferences.edit()) {
+        with(sharedPreferences.edit()) {
             putString(AWOKE, time)
             apply()
         }
     }
-    fun getAwokeTime() : String? {
+
+    fun getAwokeTime(): String? {
         return sharedPreferences.getString(AWOKE, null)
     }
+
     fun removeAwokeTime() {
         with(sharedPreferences.edit()) {
             remove(AWOKE)
@@ -41,14 +45,16 @@ class SharedPreferences(private val context: Context) {
     }
 
     fun saveDifferenceTime(time: String) {
-        with (sharedPreferences.edit()) {
+        with(sharedPreferences.edit()) {
             putString(DIFFERENCE_TIME, time)
             apply()
         }
     }
-    fun getDifferenceTime() : String? {
+
+    fun getDifferenceTime(): String? {
         return sharedPreferences.getString(DIFFERENCE_TIME, null)
     }
+
     fun removeDifferenceTime() {
         with(sharedPreferences.edit()) {
             remove(DIFFERENCE_TIME)
@@ -62,25 +68,30 @@ class SharedPreferences(private val context: Context) {
             apply()
         }
     }
-    fun getHeight() : String? {
+
+    fun getHeight(): String? {
         return sharedPreferences.getString(HEIGHT, null)
     }
+
     fun saveWeight(weight: String) {
         with(sharedPreferences.edit()) {
             putString(WEIGHT, weight)
             apply()
         }
     }
-    fun getWeight() : String? {
+
+    fun getWeight(): String? {
         return sharedPreferences.getString(WEIGHT, null)
     }
+
     fun saveName(name: String) {
         with(sharedPreferences.edit()) {
             putString(NAME, name)
             apply()
         }
     }
-    fun getName() : String? {
+
+    fun getName(): String? {
         return sharedPreferences.getString(NAME, null)
     }
 
@@ -90,7 +101,8 @@ class SharedPreferences(private val context: Context) {
             apply()
         }
     }
-    fun getDate() : String? {
+
+    fun getDate(): String? {
         return sharedPreferences.getString(DATE, null)
     }
 

@@ -13,7 +13,8 @@ class ChatRepository(private val context: Context) {
     fun getChatMessagesFlow(): Flow<List<ChatMessageModel>> = chatMessagesModel
 
     fun addUserMessage(messageText: String) {
-        val currentMessages = chatMessagesModel.value.toMutableList() // Получаем текущий список сообщений и превращаем его в MutableList
+        val currentMessages =
+            chatMessagesModel.value.toMutableList() // Получаем текущий список сообщений и превращаем его в MutableList
         val userMessageId = UUID.randomUUID().toString()
         val userMessage = ChatMessageModel(userMessageId, messageText, true, false)
 
@@ -26,7 +27,8 @@ class ChatRepository(private val context: Context) {
         currentMessages += botMessage
         currentMessages += ChatMessageModel(emptyLineId, "", false, true)
 
-        chatMessagesModel.value = currentMessages // Обновляем значение StateFlow новым списком сообщений
+        chatMessagesModel.value =
+            currentMessages // Обновляем значение StateFlow новым списком сообщений
     }
 
 

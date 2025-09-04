@@ -1,5 +1,6 @@
 package project.moms.assistant.presentation.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.transition.ChangeBounds
 import android.transition.TransitionManager
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.inputmethod.InputMethodManager
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
@@ -19,16 +21,14 @@ import kotlinx.coroutines.launch
 import project.moms.assistant.R
 import project.moms.assistant.data.repository.room.ChatRepository
 import project.moms.assistant.databinding.FragmentAssistantBinding
-import project.moms.assistant.presentation.viewModels.factory.ChatViewModelFactory
 import project.moms.assistant.presentation.adapters.ChatAdapter
 import project.moms.assistant.presentation.viewModels.ChatViewModel
-import android.content.Context
-import android.view.inputmethod.InputMethodManager
+import project.moms.assistant.presentation.viewModels.factory.ChatViewModelFactory
 
 
 // TODO доработать функционал, чтобы вместе с потерей фокуса скрывалась и клавиатура
 class FragmentAssistant : Fragment() {
-    private var _binding : FragmentAssistantBinding? = null
+    private var _binding: FragmentAssistantBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: ChatViewModel by viewModels {
@@ -41,7 +41,11 @@ class FragmentAssistant : Fragment() {
     private lateinit var constraintSetStart: ConstraintSet
     private lateinit var constraintSetEnd: ConstraintSet
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = FragmentAssistantBinding.inflate(inflater)
         return binding.root
     }
@@ -86,7 +90,7 @@ class FragmentAssistant : Fragment() {
 
     private fun addIconAndSendMessage() {
         val searchIcon = ContextCompat.getDrawable(requireContext(), R.drawable.searched_icon)
-        binding.textInputLayout.endIconMode =TextInputLayout.END_ICON_CUSTOM
+        binding.textInputLayout.endIconMode = TextInputLayout.END_ICON_CUSTOM
         binding.textInputLayout.endIconDrawable = searchIcon
 
         binding.textInputLayout.setEndIconOnClickListener {
@@ -122,7 +126,8 @@ class FragmentAssistant : Fragment() {
     }
 
     private fun hideKeyboard() {
-        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val imm =
+            requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 

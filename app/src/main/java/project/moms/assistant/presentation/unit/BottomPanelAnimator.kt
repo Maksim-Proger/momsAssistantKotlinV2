@@ -25,7 +25,8 @@ object BottomPanelAnimator {
         linearLayoutButtons.layoutParams = layoutParams
 
         if (percentageScrolled >= 1.0f) {
-            val color = ContextCompat.getColor(linearLayoutButtons.context, R.color.background_color)
+            val color =
+                ContextCompat.getColor(linearLayoutButtons.context, R.color.background_color)
             linearLayoutButtons.setBackgroundColor(color)
             for (i in 0 until childInLinearLayout) {
                 val childView = linearLayoutButtons.getChildAt(i)
@@ -33,7 +34,10 @@ object BottomPanelAnimator {
             }
             buttons.forEach { button ->
                 val drawable = button.drawable
-                DrawableCompat.setTint(drawable, ContextCompat.getColor(context, R.color.text_color))
+                DrawableCompat.setTint(
+                    drawable,
+                    ContextCompat.getColor(context, R.color.text_color)
+                )
                 button.setImageDrawable(drawable)
             }
         } else {
@@ -44,7 +48,10 @@ object BottomPanelAnimator {
             }
             buttons.forEach { button ->
                 val drawable = button.drawable
-                DrawableCompat.setTint(drawable, ContextCompat.getColor(context, R.color.text_color2))
+                DrawableCompat.setTint(
+                    drawable,
+                    ContextCompat.getColor(context, R.color.text_color2)
+                )
                 button.setImageDrawable(drawable)
             }
         }
