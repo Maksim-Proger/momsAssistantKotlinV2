@@ -1,4 +1,4 @@
-package project.moms.assistant.presentation
+package project.moms.assistant
 
 import android.os.Bundle
 import android.view.View
@@ -10,8 +10,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import project.moms.assistant.R
 import project.moms.assistant.databinding.ActivityMainBinding
+import project.moms.assistant.presentation.unit.BottomPanelAnimator
+import project.moms.assistant.presentation.unit.OnScrollChangeListener
 
 class MainActivity : AppCompatActivity(), OnScrollChangeListener {
     private var _binding : ActivityMainBinding? = null
@@ -28,8 +29,7 @@ class MainActivity : AppCompatActivity(), OnScrollChangeListener {
     }
 
     private fun setupNavigation() {
-        val navHostFragment =
-            supportFragmentManager
+        val navHostFragment = supportFragmentManager
                 .findFragmentById(R.id.nav_host_fragment_content_navigation) as NavHostFragment
         navController = navHostFragment.navController
 
@@ -41,7 +41,8 @@ class MainActivity : AppCompatActivity(), OnScrollChangeListener {
                 R.id.fragmentDiary,
                 R.id.fragmentAssistant,
                 R.id.fragmentMainScreen
-            ), drawerLayout)
+            ), drawerLayout
+        )
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {

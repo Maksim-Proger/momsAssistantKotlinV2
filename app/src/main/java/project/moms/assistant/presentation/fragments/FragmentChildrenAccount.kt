@@ -12,7 +12,7 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import project.moms.assistant.R
 import project.moms.assistant.data.repository.sharedPreference.SharedPreferences
 import project.moms.assistant.databinding.FragmentChildrenAccountBinding
-import project.moms.assistant.presentation.viewModels.ViewModelChildrenAccount
+import project.moms.assistant.presentation.viewModels.ChildrenAccountViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -22,7 +22,7 @@ class FragmentChildrenAccount : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var viewModel: ViewModelChildrenAccount
+    private lateinit var viewModel: ChildrenAccountViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentChildrenAccountBinding.inflate(inflater)
@@ -34,9 +34,9 @@ class FragmentChildrenAccount : Fragment() {
         sharedPreferences = SharedPreferences(requireContext())
         viewModel =
             ViewModelProvider(
-                this, ViewModelChildrenAccount
+                this, ChildrenAccountViewModel
                     .Factory(sharedPreferences)
-            )[ViewModelChildrenAccount::class.java]
+            )[ChildrenAccountViewModel::class.java]
 
         listenerButtons()
         getData()

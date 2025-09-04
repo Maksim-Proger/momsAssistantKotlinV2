@@ -10,8 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import project.moms.assistant.data.repository.sharedPreference.SharedPreferences
 import project.moms.assistant.databinding.FragmentMainScreenBinding
-import project.moms.assistant.presentation.OnScrollChangeListener
-import project.moms.assistant.presentation.viewModels.SleepViewModelFactory
+import project.moms.assistant.presentation.unit.OnScrollChangeListener
+import project.moms.assistant.presentation.viewModels.factory.SleepViewModelFactory
 import project.moms.assistant.presentation.viewModels.SleepViewModel
 
 class FragmentMainScreen : Fragment() {

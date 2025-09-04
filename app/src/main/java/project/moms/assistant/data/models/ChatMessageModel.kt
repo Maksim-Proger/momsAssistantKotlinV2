@@ -1,6 +1,6 @@
-package project.moms.assistant.data.repository.models
+package project.moms.assistant.data.models
 
-data class ChatMessage(
+data class ChatMessageModel(
     val id: String,
     val message: String,
     val userMessage: Boolean,

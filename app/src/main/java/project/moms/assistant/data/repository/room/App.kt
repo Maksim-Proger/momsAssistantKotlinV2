@@ -1,4 +1,4 @@
-package project.moms.assistant.data.repository
+package project.moms.assistant.data.repository.room
 
 import android.app.Application
 import androidx.room.Room
