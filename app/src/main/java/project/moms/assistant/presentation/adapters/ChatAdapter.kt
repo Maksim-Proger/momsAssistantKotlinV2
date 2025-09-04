@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import project.moms.assistant.R
-import project.moms.assistant.data.repository.models.ChatMessage
+import project.moms.assistant.data.models.ChatMessageModel
 
-class ChatAdapter : ListAdapter<ChatMessage, RecyclerView.ViewHolder>(MessageDiffCallback()) {
+class ChatAdapter : ListAdapter<ChatMessageModel, RecyclerView.ViewHolder>(MessageDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
@@ -49,20 +49,20 @@ class ChatAdapter : ListAdapter<ChatMessage, RecyclerView.ViewHolder>(MessageDif
     }
     class UserMessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val userMessageText: TextView = itemView.findViewById(R.id.userMessageText)
-        fun bind(chatMessage: ChatMessage) {
-            userMessageText.text = chatMessage.message
+        fun bind(chatMessageModel: ChatMessageModel) {
+            userMessageText.text = chatMessageModel.message
         }
     }
     class AssistantMessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val assistantMessageText: TextView = itemView.findViewById(R.id.assistantMessageText)
-        fun bind(chatMessage: ChatMessage) {
-            assistantMessageText.text = chatMessage.message
+        fun bind(chatMessageModel: ChatMessageModel) {
+            assistantMessageText.text = chatMessageModel.message
         }
     }
     class EmptyLineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val emptyLine: TextView = itemView.findViewById(R.id.emptyLine)
-        fun bind(chatMessage: ChatMessage) {
-            emptyLine.text = chatMessage.message
+        fun bind(chatMessageModel: ChatMessageModel) {
+            emptyLine.text = chatMessageModel.message
             emptyLine.setTextColor(Color.GRAY)
         }
     }
@@ -72,11 +72,11 @@ class ChatAdapter : ListAdapter<ChatMessage, RecyclerView.ViewHolder>(MessageDif
         private const val EMPTY_LINE_MESSAGE = 3
     }
 }
-class MessageDiffCallback : DiffUtil.ItemCallback<ChatMessage>() {
-    override fun areItemsTheSame(oldItem: ChatMessage, newItem: ChatMessage): Boolean {
+class MessageDiffCallback : DiffUtil.ItemCallback<ChatMessageModel>() {
+    override fun areItemsTheSame(oldItem: ChatMessageModel, newItem: ChatMessageModel): Boolean {
         return oldItem.id == newItem.id
     }
-    override fun areContentsTheSame(oldItem: ChatMessage, newItem: ChatMessage): Boolean {
+    override fun areContentsTheSame(oldItem: ChatMessageModel, newItem: ChatMessageModel): Boolean {
         return oldItem == newItem
     }
 }

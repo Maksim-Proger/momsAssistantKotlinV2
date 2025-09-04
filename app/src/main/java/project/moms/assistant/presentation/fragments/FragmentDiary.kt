@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import project.moms.assistant.data.repository.App
+import project.moms.assistant.data.repository.room.App
 import project.moms.assistant.databinding.FragmentDiaryBinding
 import project.moms.assistant.presentation.adapters.DiaryAdapter
 import project.moms.assistant.presentation.viewModels.DatabaseViewModel

@@ -17,9 +17,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.launch
 import project.moms.assistant.R
-import project.moms.assistant.data.repository.ChatRepository
+import project.moms.assistant.data.repository.room.ChatRepository
 import project.moms.assistant.databinding.FragmentAssistantBinding
-import project.moms.assistant.presentation.viewModels.ChatViewModelFactory
+import project.moms.assistant.presentation.viewModels.factory.ChatViewModelFactory
 import project.moms.assistant.presentation.adapters.ChatAdapter
 import project.moms.assistant.presentation.viewModels.ChatViewModel
 import android.content.Context

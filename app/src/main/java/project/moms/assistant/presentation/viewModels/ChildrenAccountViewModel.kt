@@ -10,7 +10,7 @@ import project.moms.assistant.data.repository.sharedPreference.SharedPreferences
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 
-class ViewModelChildrenAccount(private val sharedPreferences: SharedPreferences) : ViewModel() {
+class ChildrenAccountViewModel(private val sharedPreferences: SharedPreferences) : ViewModel() {
 
     private val _weeks = MutableStateFlow("")
     val weeks = _weeks.asStateFlow()
@@ -36,9 +36,9 @@ class ViewModelChildrenAccount(private val sharedPreferences: SharedPreferences)
 
     class Factory(private val sharedPreferences: SharedPreferences) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(ViewModelChildrenAccount::class.java)) {
+            if (modelClass.isAssignableFrom(ChildrenAccountViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return ViewModelChildrenAccount(sharedPreferences) as T
+                return ChildrenAccountViewModel(sharedPreferences) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
         }

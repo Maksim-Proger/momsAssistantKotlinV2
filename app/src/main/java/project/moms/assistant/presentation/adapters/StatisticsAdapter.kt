@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import project.moms.assistant.R
-import project.moms.assistant.data.repository.models.SleepRecording
+import project.moms.assistant.data.models.SleepRecordingEntity
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 class StatisticsAdapter
-    : ListAdapter<SleepRecording, StatisticsAdapter.SleepViewHolder>(DiffCallback()) {
+    : ListAdapter<SleepRecordingEntity, StatisticsAdapter.SleepViewHolder>(DiffCallback()) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -38,12 +38,12 @@ class StatisticsAdapter
         private val itemStatistics: AppCompatTextView = itemView.findViewById(R.id.item_statistics)
         private val itemDate: AppCompatTextView = itemView.findViewById(R.id.textViewDate)
         private val cardView: CardView = itemView.findViewById(R.id.my_card_view)
-        fun bind(sleepRecording: SleepRecording, isFirstInGroup: Boolean) {
-            itemStatistics.text = sleepRecording.sleepRecordingId
+        fun bind(sleepRecordingEntity: SleepRecordingEntity, isFirstInGroup: Boolean) {
+            itemStatistics.text = sleepRecordingEntity.sleepRecordingId
 
             // Преобразуем строку с датой в объект Date
             val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
-            val date = dateFormat.parse(sleepRecording.date)
+            val date = dateFormat.parse(sleepRecordingEntity.date)
 
             val resDate = date?.let { SimpleDateFormat("dd MMMM", Locale.getDefault()).format(it) }
 
@@ -64,12 +64,12 @@ class StatisticsAdapter
     }
 }
 
-class DiffCallback : DiffUtil.ItemCallback<SleepRecording>() {
-    override fun areItemsTheSame(oldItem: SleepRecording, newItem: SleepRecording): Boolean {
+class DiffCallback : DiffUtil.ItemCallback<SleepRecordingEntity>() {
+    override fun areItemsTheSame(oldItem: SleepRecordingEntity, newItem: SleepRecordingEntity): Boolean {
         return oldItem.sleepRecordingId == newItem.sleepRecordingId
     }
 
-    override fun areContentsTheSame(oldItem: SleepRecording, newItem: SleepRecording): Boolean {
+    override fun areContentsTheSame(oldItem: SleepRecordingEntity, newItem: SleepRecordingEntity): Boolean {
         return oldItem == newItem
     }
 

@@ -1,4 +1,4 @@
-package project.moms.assistant.presentation
+package project.moms.assistant.presentation.unit
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import project.moms.assistant.MainActivity
 import project.moms.assistant.R
 import project.moms.assistant.databinding.ActivitySplashScreenBinding
 

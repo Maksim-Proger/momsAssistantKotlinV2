@@ -1,4 +1,4 @@
-package project.moms.assistant.presentation
+package project.moms.assistant.presentation.unit
 
 import android.content.Context
 import opennlp.tools.stemmer.PorterStemmer
@@ -52,9 +52,7 @@ class LogicAssistant {
         return "Пока я не могу ответить вам на этот вопрос. Попробуйте его переформулировать."
     }
 
-    private fun containsAnyNormalized(
-        array: Array<String>, vararg normalizedValues: String
-    ) : Boolean {
+    private fun containsAnyNormalized(array: Array<String>, vararg normalizedValues: String) : Boolean {
         val combined = array.joinToString(" ").lowercase()
         normalizedValues.forEach { normalizedValue ->
             if (combined.contains(normalizedValue.lowercase())) {

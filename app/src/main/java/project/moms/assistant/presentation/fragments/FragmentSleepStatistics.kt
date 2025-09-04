@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
-import project.moms.assistant.data.repository.App
+import project.moms.assistant.data.repository.room.App
 import project.moms.assistant.databinding.FragmentSleepStatisticsBinding
 import project.moms.assistant.presentation.adapters.StatisticsAdapter
 import project.moms.assistant.presentation.viewModels.DatabaseViewModel
